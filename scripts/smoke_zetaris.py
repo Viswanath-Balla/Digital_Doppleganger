@@ -39,27 +39,33 @@ async def main() -> None:
     # For now, we attempt an import and give a clear error if missing.
 
     try:
-        # TODO(human): Replace this block with actual Zetaris client code
-        # from zetaris import Client  # or whatever the actual import is
-        raise ImportError(
-            "Zetaris Python client not yet configured. "
-            "Place sponsor docs in /docs/sponsor/ and update this script. "
-            f"Expected connection: host={settings.zetaris_host}, "
-            f"port={settings.zetaris_port}, "
-            f"database={settings.zetaris_database}"
+        import psycopg2
+
+        conn = psycopg2.connect(
+            host=settings.zetaris_host,
+            port=settings.zetaris_port,
+            user=settings.zetaris_user,
+            password=settings.zetaris_password,
+            database=settings.zetaris_database,
+            connect_timeout=5,
         )
-    except ImportError as e:
-        print(f"[smoke_zetaris] MISSING DEPENDENCY: {e}")
-        print("[smoke_zetaris] What I need from you:")
-        print("  1. Zetaris Python driver package name (pip install ???)")
-        print("  2. Connection example code")
-        print("  3. How to register CSV files as virtual tables")
-        print("  4. Place docs in /docs/sponsor/zetaris_*.md")
-        sys.exit(1)
+        cur = conn.cursor()
+        cur.execute("SELECT 1 AS ok;")
+        result = cur.fetchone()
+        print(f"[smoke_zetaris] SUCCESS! SELECT 1 returned: {result}")
+
+        cur.execute(
+            "SELECT table_name FROM information_schema.tables WHERE table_schema='public';"
+        )
+        tables = [t[0] for t in cur.fetchall()]
+        print(f"[smoke_zetaris] Existing tables in '{settings.zetaris_database}': {tables}")
+        conn.close()
+
     except Exception as e:
-        print(f"[smoke_zetaris] CONNECTION FAILED: {e}")
+        print(f"[smoke_zetaris] CONNECTION FAILED: {type(e).__name__}: {e}")
         print(f"[smoke_zetaris] Check: ZETARIS_HOST={settings.zetaris_host}, "
-              f"ZETARIS_PORT={settings.zetaris_port}")
+              f"ZETARIS_PORT={settings.zetaris_port}, "
+              f"ZETARIS_DATABASE={settings.zetaris_database}")
         sys.exit(1)
 
 

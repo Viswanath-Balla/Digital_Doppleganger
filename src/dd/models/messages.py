@@ -43,6 +43,8 @@ class TraceRecord(BaseModel):
     agent: str
     message_type: str
     model: str
+    provider: str = "nightshift"
+    degraded: bool = False
     latency_ms: float = 0.0
     retry_count: int = 0
     outcome: Literal["success", "failure", "downgrade", "rejected", "evidence_requested"] = "success"

@@ -221,7 +221,9 @@ __marimo__/
 
 # Digital Doppelgänger
 runs/
-cache/
+reports/
+cache/*
+!cache/llm_replay.jsonl
 *.duckdb
 *.duckdb.wal
 data/sample/*.csv

@@ -140,4 +140,6 @@ class Finding(BaseModel):
     attacker_models: list[AttackerModel] = Field(default_factory=list)
     evidence_chain: list[dict[str, Any]] = Field(default_factory=list)
     remediation: str = ""
+    linchpin_facts: list[str] = Field(default_factory=list)
+    counterfactual_explanation: str = ""
     created_at: str = Field(default_factory=_utc_now_str)
