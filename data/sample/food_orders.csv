@@ -1,0 +1,12 @@
+profile_id,order_id,timestamp,delivery_address,items,restaurant_name,total_amount
+A,ORD_A01,2026-06-01T19:15:00Z,"742 Evergreen Terr, Springfield","Pad Thai, Spring Rolls",Siam Garden,28.5
+A,ORD_A02,2026-06-04T19:30:00Z,"742 Evergreen Terr, Springfield","Margherita Pizza, Diet Coke",Luigi's Wood Fired,22.0
+A,ORD_A03,2026-06-09T18:45:00Z,"742 Evergreen Terr, Springfield",Salmon Poke Bowl,Aloha Poke,19.75
+A,ORD_A04,2026-06-12T20:00:00Z,"742 Evergreen Terr, Springfield","Veggie Burrito, Guacamole",Cantina Mexicana,17.5
+A,ORD_A05,2026-06-16T19:20:00Z,"742 Evergreen Terr, Springfield","Chicken Tikka Masala, Garlic Naan",Taj Flavors,31.0
+A,ORD_A06,2026-06-05T12:15:00Z,"Nexora Systems, 100 Innovation Way, Springfield","Club Sandwich, Iced Tea",Corner Deli,14.25
+A,ORD_A07,2026-06-13T23:45:00Z,"742 Evergreen Terr, Springfield","Late Night Cheeseburger, Fries",Midnight Diner,16.8
+B,ORD_B01,2026-05-15T18:30:00Z,"404 Meadow Lane, Detroit","Organic Green Salad, Lentil Soup",Pure Harvest,24.0
+B,ORD_B02,2026-05-29T18:40:00Z,"404 Meadow Lane, Detroit","Steamed Dumplings, Ginger Broth",Lotus Garden,21.5
+C,ORD_C01,2026-04-10T19:00:00Z,"88 Clipper St, San Francisco","Spicy Ramen, Gyoza",Ramen Hiro,26.0
+C,ORD_C02,2026-04-18T19:30:00Z,"88 Clipper St, San Francisco",Chicken Katsu Curry,Tokyo Express,20.0

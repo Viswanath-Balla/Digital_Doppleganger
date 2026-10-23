@@ -1,0 +1,17 @@
+profile_id,field_name,field_value,source_platform,updated_at
+A,full_name,Alex Rivera,linkedin,2026-01-15T09:00:00Z
+A,email,alex.rivera.dev@gmail.com,google,2026-01-10T08:30:00Z
+A,phone,+1-555-0142,uber_eats,2026-02-01T12:00:00Z
+A,employer,Nexora Systems,linkedin,2026-01-15T09:00:00Z
+A,job_title,Senior Backend Engineer,linkedin,2026-01-15T09:00:00Z
+A,city,Springfield,strava,2026-03-01T07:00:00Z
+B,full_name,Brenda Vance,linkedin,2026-01-12T10:00:00Z
+B,email,b.vance.design@outlook.com,outlook,2026-01-05T11:00:00Z
+B,employer,Aura Studio,linkedin,2026-01-12T10:00:00Z
+B,job_title,Product Design Lead,linkedin,2026-01-12T10:00:00Z
+B,emergency_contact,David Vance (Brother),health_portal,2026-02-14T14:30:00Z
+C,full_name,Charlie Chen,instagram,2026-01-20T16:00:00Z
+C,handle,@charlie_runs_fast,instagram,2026-01-20T16:00:00Z
+C,email,charlie.chen96@yahoo.com,yahoo,2026-01-01T10:00:00Z
+C,birth_year,1996,forum,2026-02-10T19:00:00Z
+C,hometown,Oakfield,facebook,2026-01-02T12:00:00Z

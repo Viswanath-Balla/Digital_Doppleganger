@@ -34,6 +34,13 @@ class DuckDBDataLayer(DataLayer):
 
     def _init_tables(self) -> None:
         """Register all CSV files in sample_data_dir as DuckDB tables."""
+        if not self._sample_data_dir.exists() or not list(self._sample_data_dir.glob("*.csv")):
+            try:
+                from scripts.generate_synthetic import generate_all
+                generate_all()
+            except Exception:
+                pass
+
         if not self._sample_data_dir.exists():
             return
 

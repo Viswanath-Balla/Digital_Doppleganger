@@ -1,0 +1,9 @@
+profile_id,post_id,timestamp,platform,text_content,location_tag,media_type
+A,SOC_A01,2026-07-10T07:00:00Z,twitter,"Bag packed, lights off, and airport bound for the next 10 days! Hawaii here we come 🌺✈️",SFO International Airport,photo
+A,SOC_A02,2026-07-15T18:00:00Z,instagram,Sunset over Waikiki beach. Unplugged and peaceful.,"Honolulu, Hawaii",photo
+A,SOC_A03,2026-06-03T07:25:00Z,twitter,Beautiful crisp 62F morning for a run around the neighborhood. Coffee time!,Springfield,text
+B,SOC_B01,2026-05-19T17:30:00Z,threads,"Tough afternoon at the medical center, but feeling grateful for my care team. Taking the evening to rest.","Detroit, MI",text
+B,SOC_B02,2026-06-05T14:00:00Z,instagram,New ceramic collection design exploration. Slow steady progress.,"Detroit, MI",photo
+C,SOC_C01,2026-05-14T10:00:00Z,instagram,"Officially entering my 30s today! Born May 14, 1996 and loving the journey so far 🎉","San Francisco, CA",photo
+C,SOC_C02,2026-04-05T15:00:00Z,instagram,"Happy 3rd birthday to my favorite golden retriever, Barnaby! Best hiking partner ever 🐶",Marin Headlands,photo
+C,SOC_C03,2026-03-22T19:00:00Z,facebook,Great catching up with old classmates at the Oakfield Elementary 20-year alumni picnic! Can't believe it's been that long.,Oakfield Park,photo

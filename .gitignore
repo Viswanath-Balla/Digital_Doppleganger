@@ -226,4 +226,4 @@ cache/*
 !cache/llm_replay.jsonl
 *.duckdb
 *.duckdb.wal
-data/sample/*.csv
+# data/sample/*.csv is tracked for zero-dependency sample mode

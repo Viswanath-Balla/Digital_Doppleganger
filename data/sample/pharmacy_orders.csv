@@ -1,0 +1,7 @@
+profile_id,order_id,timestamp,item_category,prescriber_specialty,delivery_address
+A,PHM_A01,2026-04-10T10:00:00Z,Daily Multivitamin 100ct,General Wellness,"742 Evergreen Terr, Springfield"
+A,PHM_A02,2026-05-12T11:00:00Z,Ibuprofen 200mg,General Wellness,"742 Evergreen Terr, Springfield"
+B,PHM_B01,2026-05-06T09:30:00Z,Immunology Supportive Therapy,Hematology-Oncology,"404 Meadow Lane, Detroit"
+B,PHM_B02,2026-05-20T10:15:00Z,Targeted Anti-Emetic Formulation,Hematology-Oncology,"404 Meadow Lane, Detroit"
+B,PHM_B03,2026-06-03T11:00:00Z,Immunology Supportive Therapy,Hematology-Oncology,"404 Meadow Lane, Detroit"
+C,PHM_C01,2026-03-15T14:00:00Z,Cetirizine 10mg Anti-Allergy,Allergy & Asthma,"88 Clipper St, San Francisco"
