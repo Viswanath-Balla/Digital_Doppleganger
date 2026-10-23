@@ -165,6 +165,13 @@ async def run_audit(req: RunRequest) -> JSONResponse:
         "run_id": result["run_id"],
         "profile_id": profile_id,
         "mode": mode,
+        "data_layer": type(data_layer).__name__,
+        "llm_client": type(llm_client).__name__,
+        "is_degraded": is_degraded,
+        "tables_queried": [
+            "profile_fields", "strava_activities", "food_orders",
+            "calendar_events", "social_posts", "pharmacy_orders"
+        ],
         "exposure_summary": exposure_summary,
         "before_score": before_score,
         "after_score": after_score,

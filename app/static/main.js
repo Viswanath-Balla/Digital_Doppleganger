@@ -155,13 +155,21 @@ function showSuccessStatus(data) {
   clearInterval(_agentTimer);
   const score = data.exposure_summary?.exposure_score ?? '—';
   const tier  = data.exposure_summary?.exposure_tier ?? '—';
+  const dlBadge = data.data_layer === 'ZetarisDataLayer'
+    ? '<span style="background:rgba(20,184,166,0.15);color:#0d9488;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;">LIVE ZETARIS VDW</span>'
+    : '<span style="background:rgba(100,116,139,0.15);color:#475569;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;">DUCKDB OFFLINE</span>';
+
   statusContent.className = '';
   statusContent.innerHTML = `
     <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;">
-      <p style="color:var(--positive);font-weight:500;">✓ Audit complete — Profile ${escHtml(data.profile_id)}</p>
-      <p style="color:var(--ink-2);">Exposure: <strong>${score} / 100</strong> · ${tier}</p>
-      <p style="color:var(--ink-3);font-size:12px;">Rounds: ${data.rounds_executed} · Loop iterations: ${data.loop_iterations}</p>
-      <p style="color:var(--ink-3);font-size:12px;font-family:var(--mono);">${escHtml(data.trace_file)}</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <p style="color:var(--positive);font-weight:600;margin:0;">✓ Audit complete — Profile ${escHtml(data.profile_id)}</p>
+        ${dlBadge}
+      </div>
+      <p style="color:var(--ink-2);margin:0;">Exposure: <strong>${score} / 100</strong> · ${tier}</p>
+      <p style="color:var(--ink-3);font-size:12px;margin:0;">Source: <strong>${escHtml(data.data_layer || 'DataLayer')}</strong> · LLM: <strong>${escHtml(data.llm_client || 'LLMClient')}</strong></p>
+      <p style="color:var(--ink-3);font-size:12px;margin:0;">Rounds: ${data.rounds_executed} · Loop iterations: ${data.loop_iterations}</p>
+      <p style="color:var(--ink-3);font-size:11px;font-family:var(--mono);word-break:break-all;margin:0;">${escHtml(data.trace_file)}</p>
     </div>`;
 }
 
