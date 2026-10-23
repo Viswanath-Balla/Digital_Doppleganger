@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Digital Doppelgänger
+runs/
+cache/
+*.duckdb
+*.duckdb.wal
+data/sample/*.csv
