@@ -45,13 +45,37 @@ class VerifierAgent(BaseAgent):
         rejected_ids: list[str] = []
 
         inferences = self.wm_query_entities(EntityType.INFERENCE.value, {"profile_id": profile_id})
+        active_inferences = [
+            inf for inf in inferences if inf.get("status") in ("proposed", "revised", "under_review")
+        ]
 
-        for inf in inferences:
-            status = inf.get("status")
-            if status not in ("proposed", "revised", "under_review"):
-                continue
+        if active_inferences:
+            # Dispatch round verification evaluation to LLM (Nightshift / Nemotron in live mode, ReplayLLMClient in sample mode)
+            verify_prompt = [
+                {
+                    "role": "system",
+                    "content": (
+                        "You are an independent privacy verifier. Evaluate whether cited evidence chains logically "
+                        "support each candidate inference, or whether they constitute speculation or false correlation. "
+                        "Determine verdict (supported, weakly_supported, speculation), confidence, and rationale."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        f"Profile: {profile_id} (Round {round_num})\n"
+                        f"Candidates to verify:\n" + "\n".join(
+                            f"- [{inf.get('_id')}] {inf.get('claim')} (status: {inf.get('status')})"
+                            for inf in active_inferences
+                        )
+                    ),
+                },
+            ]
+            await self.complete_llm(verify_prompt)
 
+        for inf in active_inferences:
             inf_id = inf["_id"]
+            status = inf.get("status")
             claim = inf.get("claim", "")
             chain = self.wm_evidence_chain(inf_id)
 

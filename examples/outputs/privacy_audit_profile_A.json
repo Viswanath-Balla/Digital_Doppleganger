@@ -1,0 +1,853 @@
+{
+  "audit_schema_version": "1.0.0",
+  "audit_metadata": {
+    "profile_id": "A",
+    "timestamp_utc": "2026-10-24T12:55:11.722835+00:00",
+    "trace_file": "C:\\Users\\siddh\\OneDrive\\Desktop\\dd\\Digital_Doppleganger\\runs\\run_20261024_125511_9ee1f6\\trace.jsonl",
+    "engine": "Digital Doppelg\u00e4nger Multi-Agent Auditor"
+  },
+  "exposure_summary": {
+    "exposure_score": 61.0,
+    "exposure_tier": "HIGH",
+    "summary_description": "High privacy exposure enabling precise location, routine, or credential compromise.",
+    "level_counts": {
+      "CRITICAL": 0,
+      "HIGH": 2,
+      "MODERATE": 1,
+      "LOW": 0,
+      "INFORMATIONAL": 2
+    },
+    "total_findings": 5,
+    "top_risk_driver": "Home address is 742 Evergreen Terr, Springfield",
+    "top_driver_risk": "HIGH"
+  },
+  "findings": [
+    {
+      "finding_id": "fnd_82fae963",
+      "claim": "Home address is 742 Evergreen Terr, Springfield",
+      "category": "location",
+      "verdict": "supported",
+      "confidence": 0.95,
+      "risk_level": {
+        "value": 4,
+        "name": "HIGH"
+      },
+      "attacker_models": [
+        "stalker",
+        "burglar"
+      ],
+      "remediation": "Enable Geofenced Privacy Zones on Fitness Applications: Open Strava / fitness tracking Settings > Privacy Controls > Map Visibility.",
+      "counterfactual": {
+        "finding_id": "fnd_82fae963",
+        "claim": "Home address is 742 Evergreen Terr, Springfield",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_13c",
+          "fact_a40"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_13c53e4b0eea",
+            "fact_summary": "39.782, -89.65",
+            "source": "extractor_spatial_clustering",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Excision of fact [fact_13c] breaks the corroboration chain from extractor_spatial_clustering."
+          },
+          {
+            "fact_id": "fact_a402a0c37e27",
+            "fact_summary": "742 Evergreen Terr, Springfield",
+            "source": "extractor_mode_clustering",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Excision of fact [fact_a40] breaks the corroboration chain from extractor_mode_clustering."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_13c] (extractor_spatial_clustering) reduces adversarial confidence from 95% to 0%. Excision of fact [fact_13c] breaks the corroboration chain from extractor_spatial_clustering."
+      },
+      "remediation_plan": {
+        "title": "Enable Geofenced Privacy Zones on Fitness Applications",
+        "priority": "Immediate (Within 24 Hours)",
+        "category": "Platform Configuration",
+        "steps": [
+          "Open Strava / fitness tracking Settings > Privacy Controls > Map Visibility.",
+          "Specify a custom privacy radius (at least 500m / 0.5 miles) around your residential address.",
+          "Ensure default activity visibility is set to 'Followers' or 'Only You', not 'Everyone'."
+        ],
+        "impact": "Hides starting and ending coordinates, breaking spatial clustering from food deliveries."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_13c53e4b0eea",
+          "_type": "Fact",
+          "_source": "extractor_spatial_clustering",
+          "_sources": [
+            "extractor_spatial_clustering"
+          ],
+          "_created_by": "extractor_spatial_clustering",
+          "_created_at": "2026-10-24T12:55:11.706052+00:00",
+          "_updated_at": "2026-10-24T12:55:11.706052+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "primary_run_origin_cluster",
+          "value": "39.782, -89.65",
+          "source_table": "strava_activities",
+          "activity_count": 9
+        },
+        {
+          "_id": "fact_a402a0c37e27",
+          "_type": "Fact",
+          "_source": "extractor_mode_clustering",
+          "_sources": [
+            "extractor_mode_clustering"
+          ],
+          "_created_by": "extractor_mode_clustering",
+          "_created_at": "2026-10-24T12:55:11.707208+00:00",
+          "_updated_at": "2026-10-24T12:55:11.707208+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "primary_delivery_address",
+          "value": "742 Evergreen Terr, Springfield",
+          "source_table": "food_orders",
+          "order_frequency": 6
+        },
+        {
+          "_id": "evid_d2d60ebd94a3",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T12:55:11.713523+00:00",
+          "_updated_at": "2026-10-24T12:55:11.713523+00:00",
+          "_version": 1,
+          "inference_id": "infe_24fa65123af9",
+          "verdict_label": "supported",
+          "confidence": 0.95,
+          "rationale": "Cross-verified by GPS starting coordinate cluster (39.782, -89.650) across 8+ runs and 5 food deliveries to 742 Evergreen Terr, Springfield.",
+          "falsification_condition": "Relocation records or evidence of a shared multi-tenant account.",
+          "strengthening_condition": "Utility billing records or public voter registry match.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "plac_6607fea5c065",
+          "_type": "Place",
+          "_source": "linker_entity_resolution",
+          "_sources": [
+            "linker_entity_resolution"
+          ],
+          "_created_by": "linker_entity_resolution",
+          "_created_at": "2026-10-24T12:55:11.712512+00:00",
+          "_updated_at": "2026-10-24T12:55:11.712512+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "name": "Home Residence",
+          "address": "742 Evergreen Terr, Springfield",
+          "coordinates": "39.782, -89.65",
+          "confidence": 0.95
+        },
+        {
+          "_id": "infe_24fa65123af9",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T12:55:11.713523+00:00",
+          "_updated_at": "2026-10-24T12:55:11.713523+00:00",
+          "_version": 2,
+          "profile_id": "A",
+          "claim": "Home address is 742 Evergreen Terr, Springfield",
+          "category": "location",
+          "attacker_models": [
+            "stalker",
+            "burglar"
+          ],
+          "confidence": 0.9,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_24fa65123af9"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_27f445f5",
+      "claim": "Follows a predictable weekday morning running routine between 06:30 and 07:15 AM",
+      "category": "routine",
+      "verdict": "supported",
+      "confidence": 0.9,
+      "risk_level": {
+        "value": 3,
+        "name": "MODERATE"
+      },
+      "attacker_models": [
+        "stalker"
+      ],
+      "remediation": "Randomize Running Routes & Restrict Telemetry Publishing: Vary start times and running paths across alternating days of the week.",
+      "counterfactual": {
+        "finding_id": "fnd_27f445f5",
+        "claim": "Follows a predictable weekday morning running routine between 06:30 and 07:15 AM",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_ac4",
+          "fact_424",
+          "fact_fad"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_ac4f439f48e6",
+            "fact_summary": "Engineering Standup at Google Meet (2026-06-02 09:30:00+00:0",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Engineering Standup at Google Meet (2026-06-02 09:30:00+00:0' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_424ed0f660a1",
+            "fact_summary": "Engineering Standup at Google Meet (2026-06-01 09:30:00+00:0",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Engineering Standup at Google Meet (2026-06-01 09:30:00+00:0' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_fadfaf1c992c",
+            "fact_summary": "8 weekday runs between 06:29 and 06:33 AM",
+            "source": "extractor_temporal_clustering",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Excision of fact [fact_fad] breaks the corroboration chain from extractor_temporal_clustering."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_ac4] (calendar_events) reduces adversarial confidence from 90% to 0%. Setting event 'Engineering Standup at Google Meet (2026-06-02 09:30:00+00:0' to Private prevents cross-referencing internal schedule with public posts."
+      },
+      "remediation_plan": {
+        "title": "Randomize Running Routes & Restrict Telemetry Publishing",
+        "priority": "Short-Term (Within 7 Days)",
+        "category": "Behavioral",
+        "steps": [
+          "Vary start times and running paths across alternating days of the week.",
+          "Disable automated social media sharing / live beacon broadcasts for regular workouts.",
+          "Audit workout privacy permissions so segment leaderboards do not broadcast your schedule."
+        ],
+        "impact": "Prevents hostile stalkers from predicting your physical presence at fixed times."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_ac4f439f48e6",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T12:55:11.708493+00:00",
+          "_updated_at": "2026-10-24T12:55:11.708493+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "calendar_event",
+          "value": "Engineering Standup at Google Meet (2026-06-02 09:30:00+00:00 to 2026-06-02 10:00:00+00:00)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_A02",
+          "title": "Engineering Standup",
+          "location": "Google Meet",
+          "start_time": "2026-06-02 09:30:00+00:00",
+          "end_time": "2026-06-02 10:00:00+00:00"
+        },
+        {
+          "_id": "fact_424ed0f660a1",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T12:55:11.708493+00:00",
+          "_updated_at": "2026-10-24T12:55:11.708493+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "calendar_event",
+          "value": "Engineering Standup at Google Meet (2026-06-01 09:30:00+00:00 to 2026-06-01 10:00:00+00:00)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_A01",
+          "title": "Engineering Standup",
+          "location": "Google Meet",
+          "start_time": "2026-06-01 09:30:00+00:00",
+          "end_time": "2026-06-01 10:00:00+00:00"
+        },
+        {
+          "_id": "fact_fadfaf1c992c",
+          "_type": "Fact",
+          "_source": "extractor_temporal_clustering",
+          "_sources": [
+            "extractor_temporal_clustering"
+          ],
+          "_created_by": "extractor_temporal_clustering",
+          "_created_at": "2026-10-24T12:55:11.706052+00:00",
+          "_updated_at": "2026-10-24T12:55:11.706052+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "weekday_morning_run_habit",
+          "value": "8 weekday runs between 06:29 and 06:33 AM",
+          "source_table": "strava_activities"
+        },
+        {
+          "_id": "evid_ec72d86832f8",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T12:55:11.714681+00:00",
+          "_updated_at": "2026-10-24T12:55:11.714681+00:00",
+          "_version": 1,
+          "inference_id": "infe_3a40381ae91a",
+          "verdict_label": "supported",
+          "confidence": 0.9,
+          "rationale": "Regular weekday morning athletic telemetry between 06:29 and 06:33 AM corroborated across multiple weeks.",
+          "falsification_condition": "Varied work shifts or irregular weekend schedules.",
+          "strengthening_condition": "Corroborating device alarm or commute telematics.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "time_4a59741fdcdb",
+          "_type": "TimePattern",
+          "_source": "linker_temporal_correlation",
+          "_sources": [
+            "linker_temporal_correlation"
+          ],
+          "_created_by": "linker_temporal_correlation",
+          "_created_at": "2026-10-24T12:55:11.712512+00:00",
+          "_updated_at": "2026-10-24T12:55:11.712512+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "pattern": "Weekday Morning Routine",
+          "window": "06:30 - 09:30 AM",
+          "recurrence": "Monday-Friday",
+          "confidence": 0.9
+        },
+        {
+          "_id": "infe_3a40381ae91a",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T12:55:11.713523+00:00",
+          "_updated_at": "2026-10-24T12:55:11.714681+00:00",
+          "_version": 2,
+          "profile_id": "A",
+          "claim": "Follows a predictable weekday morning running routine between 06:30 and 07:15 AM",
+          "category": "routine",
+          "attacker_models": [
+            "stalker"
+          ],
+          "confidence": 0.85,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_3a40381ae91a"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_ef878e4b",
+      "claim": "Home is vacant during July 10-20 due to family vacation in Hawaii",
+      "category": "absence",
+      "verdict": "supported",
+      "confidence": 0.95,
+      "risk_level": {
+        "value": 4,
+        "name": "HIGH"
+      },
+      "attacker_models": [
+        "burglar"
+      ],
+      "remediation": "Enforce Delayed Social Travel Broadcast Policy: Adopt a strict post-vacation publishing policy: share photos and check-ins only AFTER returning home.",
+      "counterfactual": {
+        "finding_id": "fnd_ef878e4b",
+        "claim": "Home is vacant during July 10-20 due to family vacation in Hawaii",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_75b",
+          "fact_3a5",
+          "fact_c86"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_75b400af3ccf",
+            "fact_summary": "Bag packed, lights off, and airport bound for the next 10 da",
+            "source": "social_posts",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Deleting public post 'Bag packed, lights off, and airport bound for the next 10 da' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+          },
+          {
+            "fact_id": "fact_3a51cfaa4a54",
+            "fact_summary": "PTO - Annual Hawaii Vacation at Honolulu, HI (2026-07-10 00:",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'PTO - Annual Hawaii Vacation at Honolulu, HI (2026-07-10 00:' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_c8605a4870b2",
+            "fact_summary": "Flight Flight: SFO to HNL to United Airlines UA 238 (2026-07",
+            "source": "planner_evidence_fulfillment",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Excision of fact [fact_c86] breaks the corroboration chain from planner_evidence_fulfillment."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_75b] (social_posts) reduces adversarial confidence from 95% to 0%. Deleting public post 'Bag packed, lights off, and airport bound for the next 10 da' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+      },
+      "remediation_plan": {
+        "title": "Enforce Delayed Social Travel Broadcast Policy",
+        "priority": "Immediate (Within 24 Hours)",
+        "category": "Operational Security",
+        "steps": [
+          "Adopt a strict post-vacation publishing policy: share photos and check-ins only AFTER returning home.",
+          "Verify home security systems / timers before departure to avoid obvious signs of vacancy.",
+          "Set personal calendar events containing travel itineraries to 'Private' mode."
+        ],
+        "impact": "Eliminates real-time broadcast of vacant residential property to potential burglars."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_75b400af3ccf",
+          "_type": "Fact",
+          "_source": "social_posts",
+          "_sources": [
+            "social_posts"
+          ],
+          "_created_by": "social_posts",
+          "_created_at": "2026-10-24T12:55:11.710494+00:00",
+          "_updated_at": "2026-10-24T12:55:11.710494+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "social_post_text",
+          "value": "Bag packed, lights off, and airport bound for the next 10 days! Hawaii here we come \ud83c\udf3a\u2708\ufe0f",
+          "source_table": "social_posts",
+          "source_row_id": "SOC_A01",
+          "platform": "twitter",
+          "timestamp": "2026-07-10 07:00:00+00:00",
+          "location_tag": "SFO International Airport"
+        },
+        {
+          "_id": "fact_3a51cfaa4a54",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T12:55:11.708493+00:00",
+          "_updated_at": "2026-10-24T12:55:11.708493+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "calendar_event",
+          "value": "PTO - Annual Hawaii Vacation at Honolulu, HI (2026-07-10 00:00:00+00:00 to 2026-07-20 23:59:59+00:00)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_A04",
+          "title": "PTO - Annual Hawaii Vacation",
+          "location": "Honolulu, HI",
+          "start_time": "2026-07-10 00:00:00+00:00",
+          "end_time": "2026-07-20 23:59:59+00:00"
+        },
+        {
+          "_id": "evid_035902084903",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T12:55:11.719971+00:00",
+          "_updated_at": "2026-10-24T12:55:11.719971+00:00",
+          "_version": 1,
+          "inference_id": "infe_47cf6841c048",
+          "verdict_label": "supported",
+          "confidence": 0.95,
+          "rationale": "Corroborated by calendar vacation booking, flight itinerary, social departure post, and cessation of local deliveries.",
+          "falsification_condition": "House-sitter presence or remote smart-home lighting automation.",
+          "strengthening_condition": "Airport geotags and absence of local cellular pings.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "fact_c8605a4870b2",
+          "_type": "Fact",
+          "_source": "planner_evidence_fulfillment",
+          "_sources": [
+            "planner_evidence_fulfillment"
+          ],
+          "_created_by": "planner_evidence_fulfillment",
+          "_created_at": "2026-10-24T12:55:11.718970+00:00",
+          "_updated_at": "2026-10-24T12:55:11.718970+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "key": "flight_itinerary",
+          "value": "Flight Flight: SFO to HNL to United Airlines UA 238 (2026-07-10 08:15:00+00:00)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_A05"
+        },
+        {
+          "_id": "time_c6886d81329e",
+          "_type": "TimePattern",
+          "_source": "linker_absence_correlation",
+          "_sources": [
+            "linker_absence_correlation"
+          ],
+          "_created_by": "linker_absence_correlation",
+          "_created_at": "2026-10-24T12:55:11.712512+00:00",
+          "_updated_at": "2026-10-24T12:55:11.712512+00:00",
+          "_version": 1,
+          "profile_id": "A",
+          "pattern": "Absence Window (Vacant Home)",
+          "window": "July 10 - July 20, 2026",
+          "destination": "Hawaii",
+          "confidence": 0.95
+        },
+        {
+          "_id": "infe_47cf6841c048",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T12:55:11.713523+00:00",
+          "_updated_at": "2026-10-24T12:55:11.719971+00:00",
+          "_version": 3,
+          "profile_id": "A",
+          "claim": "Home is vacant during July 10-20 due to family vacation in Hawaii",
+          "category": "absence",
+          "attacker_models": [
+            "burglar"
+          ],
+          "confidence": 0.9,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_47cf6841c048"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_c0269d7e",
+      "claim": "Works regular night shifts as primary employment",
+      "category": "employment",
+      "verdict": "speculation",
+      "confidence": 0.2,
+      "risk_level": {
+        "value": 1,
+        "name": "INFORMATIONAL"
+      },
+      "attacker_models": [
+        "burglar",
+        "employer"
+      ],
+      "remediation": "No remediation required: Claim evaluated as uncorroborated speculation by the verifier.",
+      "counterfactual": {
+        "finding_id": "fnd_c0269d7e",
+        "claim": "Works regular night shifts as primary employment",
+        "collapse_proved": false,
+        "linchpin_facts": [],
+        "excision_results": [],
+        "summary_explanation": "Claim is already classified as ungrounded speculation; no data excision is required because the adversary lacks corroborating proof."
+      },
+      "remediation_plan": {
+        "title": "No Action Required",
+        "priority": "Advisory",
+        "category": "Advisory",
+        "steps": [
+          "No security modification needed."
+        ],
+        "impact": "Neutralizes unverified claim."
+      },
+      "evidence_chain": [
+        {
+          "_id": "evid_a1674aa1104f",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T12:55:11.714681+00:00",
+          "_updated_at": "2026-10-24T12:55:11.714681+00:00",
+          "_version": 1,
+          "inference_id": "infe_29a1f1b2b2ee",
+          "verdict_label": "speculation",
+          "confidence": 0.2,
+          "rationale": "Single Saturday late-night food delivery at 23:45 is insufficient to infer regular night shift employment. Calendar contains recurring 09:30 AM engineering syncs.",
+          "falsification_condition": "Weekday daytime meetings and morning athletic runs contradict night shift schedule.",
+          "strengthening_condition": "Recurring weekday 00:00-08:00 employment records or GPS telemetry.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "fact_260ca5aab0f5",
+          "_type": "Fact",
+          "_source": "food_orders",
+          "_sources": [
+            "food_orders"
+          ],
+          "_created_by": "food_orders",
+          "_created_at": "2026-10-24T12:55:11.707208+00:00",
+          "_updated_at": "2026-10-24T12:55:11.707208+00:00",
+          "_version": 6,
+          "profile_id": "A",
+          "key": "food_order_destination",
+          "value": "742 Evergreen Terr, Springfield",
+          "source_table": "food_orders",
+          "source_row_id": "ORD_A07",
+          "items": "Late Night Cheeseburger, Fries",
+          "timestamp": "2026-06-13 23:45:00+00:00"
+        },
+        {
+          "_id": "infe_29a1f1b2b2ee",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit",
+            "red_team_revision"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T12:55:11.713523+00:00",
+          "_updated_at": "2026-10-24T12:55:11.718970+00:00",
+          "_version": 3,
+          "profile_id": "A",
+          "claim": "Works regular night shifts as primary employment",
+          "category": "employment",
+          "attacker_models": [
+            "burglar",
+            "employer"
+          ],
+          "confidence": 0.5,
+          "status": "settled",
+          "round_num": 1,
+          "id": "infe_29a1f1b2b2ee"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_bd6627a6",
+      "claim": "Orders occasional late-night takeout on weekend evenings",
+      "category": "lifestyle",
+      "verdict": "weakly_supported",
+      "confidence": 0.7,
+      "risk_level": {
+        "value": 1,
+        "name": "INFORMATIONAL"
+      },
+      "attacker_models": [
+        "scammer"
+      ],
+      "remediation": "Anonymize Delivery Accounts & Randomize Order Destinations: Use an abbreviated name or initials on food delivery apps (e.g., 'V. B.' instead of full name).",
+      "counterfactual": {
+        "finding_id": "fnd_bd6627a6",
+        "claim": "Orders occasional late-night takeout on weekend evenings",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_260"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_260ca5aab0f5",
+            "fact_summary": "742 Evergreen Terr, Springfield",
+            "source": "food_orders",
+            "pre_removal_confidence": 0.7,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.7,
+            "is_linchpin": true,
+            "impact_explanation": "Anonymizing delivery address in '742 Evergreen Terr, Springfield' severs physical street identity from digital telemetry."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_260] (food_orders) reduces adversarial confidence from 70% to 0%. Anonymizing delivery address in '742 Evergreen Terr, Springfield' severs physical street identity from digital telemetry."
+      },
+      "remediation_plan": {
+        "title": "Anonymize Delivery Accounts & Randomize Order Destinations",
+        "priority": "Best Practice",
+        "category": "Consumer Privacy",
+        "steps": [
+          "Use an abbreviated name or initials on food delivery apps (e.g., 'V. B.' instead of full name).",
+          "Select 'Meet outside' or neighborhood pickup spots when ordering during off-peak hours."
+        ],
+        "impact": "Mitigates lifestyle and habit profiling by commercial data aggregators."
+      },
+      "evidence_chain": [
+        {
+          "_id": "evid_a1674aa1104f",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T12:55:11.714681+00:00",
+          "_updated_at": "2026-10-24T12:55:11.714681+00:00",
+          "_version": 1,
+          "inference_id": "infe_29a1f1b2b2ee",
+          "verdict_label": "speculation",
+          "confidence": 0.2,
+          "rationale": "Single Saturday late-night food delivery at 23:45 is insufficient to infer regular night shift employment. Calendar contains recurring 09:30 AM engineering syncs.",
+          "falsification_condition": "Weekday daytime meetings and morning athletic runs contradict night shift schedule.",
+          "strengthening_condition": "Recurring weekday 00:00-08:00 employment records or GPS telemetry.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "fact_260ca5aab0f5",
+          "_type": "Fact",
+          "_source": "food_orders",
+          "_sources": [
+            "food_orders"
+          ],
+          "_created_by": "food_orders",
+          "_created_at": "2026-10-24T12:55:11.707208+00:00",
+          "_updated_at": "2026-10-24T12:55:11.707208+00:00",
+          "_version": 6,
+          "profile_id": "A",
+          "key": "food_order_destination",
+          "value": "742 Evergreen Terr, Springfield",
+          "source_table": "food_orders",
+          "source_row_id": "ORD_A07",
+          "items": "Late Night Cheeseburger, Fries",
+          "timestamp": "2026-06-13 23:45:00+00:00"
+        },
+        {
+          "_id": "evid_b288c8e7671a",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T12:55:11.719971+00:00",
+          "_updated_at": "2026-10-24T12:55:11.719971+00:00",
+          "_version": 1,
+          "inference_id": "infe_a5667c83725d",
+          "verdict_label": "weakly_supported",
+          "confidence": 0.7,
+          "rationale": "Single weekend late-night order at 23:45 confirms occasional late takeout, but insufficient for habitual pattern.",
+          "falsification_condition": "Order placed on behalf of guest or family member.",
+          "strengthening_condition": "Multiple additional weekend midnight delivery logs.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "infe_29a1f1b2b2ee",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit",
+            "red_team_revision"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T12:55:11.713523+00:00",
+          "_updated_at": "2026-10-24T12:55:11.718970+00:00",
+          "_version": 3,
+          "profile_id": "A",
+          "claim": "Works regular night shifts as primary employment",
+          "category": "employment",
+          "attacker_models": [
+            "burglar",
+            "employer"
+          ],
+          "confidence": 0.5,
+          "status": "settled",
+          "round_num": 1,
+          "id": "infe_29a1f1b2b2ee"
+        },
+        {
+          "_id": "infe_a5667c83725d",
+          "_type": "Inference",
+          "_source": "red_team_revision",
+          "_sources": [
+            "red_team_revision",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_revision",
+          "_created_at": "2026-10-24T12:55:11.718970+00:00",
+          "_updated_at": "2026-10-24T12:55:11.719971+00:00",
+          "_version": 2,
+          "profile_id": "A",
+          "claim": "Orders occasional late-night takeout on weekend evenings",
+          "category": "lifestyle",
+          "attacker_models": [
+            "scammer"
+          ],
+          "confidence": 0.65,
+          "status": "verified",
+          "round_num": 2,
+          "id": "infe_a5667c83725d"
+        }
+      ]
+    }
+  ],
+  "action_checklist": [
+    {
+      "title": "Enable Geofenced Privacy Zones on Fitness Applications",
+      "priority": "Immediate (Within 24 Hours)",
+      "category": "Platform Configuration",
+      "steps": [
+        "Open Strava / fitness tracking Settings > Privacy Controls > Map Visibility.",
+        "Specify a custom privacy radius (at least 500m / 0.5 miles) around your residential address.",
+        "Ensure default activity visibility is set to 'Followers' or 'Only You', not 'Everyone'."
+      ],
+      "impact": "Hides starting and ending coordinates, breaking spatial clustering from food deliveries."
+    },
+    {
+      "title": "Randomize Running Routes & Restrict Telemetry Publishing",
+      "priority": "Short-Term (Within 7 Days)",
+      "category": "Behavioral",
+      "steps": [
+        "Vary start times and running paths across alternating days of the week.",
+        "Disable automated social media sharing / live beacon broadcasts for regular workouts.",
+        "Audit workout privacy permissions so segment leaderboards do not broadcast your schedule."
+      ],
+      "impact": "Prevents hostile stalkers from predicting your physical presence at fixed times."
+    },
+    {
+      "title": "Enforce Delayed Social Travel Broadcast Policy",
+      "priority": "Immediate (Within 24 Hours)",
+      "category": "Operational Security",
+      "steps": [
+        "Adopt a strict post-vacation publishing policy: share photos and check-ins only AFTER returning home.",
+        "Verify home security systems / timers before departure to avoid obvious signs of vacancy.",
+        "Set personal calendar events containing travel itineraries to 'Private' mode."
+      ],
+      "impact": "Eliminates real-time broadcast of vacant residential property to potential burglars."
+    },
+    {
+      "title": "Anonymize Delivery Accounts & Randomize Order Destinations",
+      "priority": "Best Practice",
+      "category": "Consumer Privacy",
+      "steps": [
+        "Use an abbreviated name or initials on food delivery apps (e.g., 'V. B.' instead of full name).",
+        "Select 'Meet outside' or neighborhood pickup spots when ordering during off-peak hours."
+      ],
+      "impact": "Mitigates lifestyle and habit profiling by commercial data aggregators."
+    }
+  ]
+}

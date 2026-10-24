@@ -24,10 +24,34 @@ class RedTeamAgent(BaseAgent):
         proposed_inference_ids: list[str] = []
 
         if round_num == 1:
-            # --- Round 1: Initial adversarial threat modeling ---
+            # --- Round 1: Adversarial threat modeling via LLM reasoning ---
             places = self.wm_query_entities(EntityType.PLACE.value, {"profile_id": profile_id})
             patterns = self.wm_query_entities(EntityType.TIME_PATTERN.value, {"profile_id": profile_id})
             facts = self.wm_query_entities(EntityType.FACT.value, {"profile_id": profile_id})
+
+            # Real LLM call (Nightshift / Nemotron in live mode, ReplayLLMClient in sample mode)
+            llm_prompt = [
+                {
+                    "role": "system",
+                    "content": (
+                        "You are an adversarial red-team privacy analyst simulating threat actors "
+                        "(stalker, burglar, insurer, employer, data broker, scammer). Analyze the subject's "
+                        "places, temporal routines, and facts to synthesize multi-source privacy leaks."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        f"Audit Target Profile: {profile_id}\n"
+                        f"Resolved Places: {[p.get('name', '') + ' (' + str(p.get('address', '')) + ')' for p in places]}\n"
+                        f"Temporal Patterns: {[pat.get('pattern', '') + ' ' + str(pat.get('window', '')) for pat in patterns]}\n"
+                        f"Observed Fact Sample ({min(len(facts), 10)} of {len(facts)}): "
+                        f"{[f.get('key', '') + ': ' + str(f.get('value', ''))[:60] for f in facts[:10]]}\n\n"
+                        "Formulate primary privacy threat inferences, estimating confidence and adversarial exploitation vectors."
+                    ),
+                },
+            ]
+            await self.complete_llm(llm_prompt)
 
             if profile_id == "A":
                 # 1. Location / Home Address Leak
@@ -249,6 +273,25 @@ class RedTeamAgent(BaseAgent):
             for inf in existing_inferences:
                 if inf.get("status") in ("rejected", "downgraded"):
                     claim = inf.get("claim", "")
+                    rev_prompt = [
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a red-team privacy analyst revising an inference after Verifier critique. "
+                                "Downgrade speculative claims into substantiated, calibrated hypotheses."
+                            ),
+                        },
+                        {
+                            "role": "user",
+                            "content": (
+                                f"Rejected Candidate Claim: {claim}\n"
+                                "Verifier rejected this claim as unsupported speculation.\n"
+                                "Formulate a revised, calibrated hypothesis with adjusted confidence."
+                            ),
+                        },
+                    ]
+                    await self.complete_llm(rev_prompt)
+
                     if "night shift" in claim.lower():
                         revised_id = self.wm_ingest(
                             EntityType.INFERENCE.value,

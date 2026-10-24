@@ -43,7 +43,7 @@ class AuditLoopOrchestrator:
         data_layer: DataLayer,
         llm_client: LLMClient,
         max_rounds: int = 2,
-        step_timeout_sec: float = 30.0,
+        step_timeout_sec: float = 60.0,
         is_degraded: bool = False,
     ) -> None:
         self.world_model = world_model
@@ -75,7 +75,10 @@ class AuditLoopOrchestrator:
         findings: list[Finding] = []
 
         data_provider = "zetaris" if hasattr(self.data_layer, "database") else "duckdb"
-        llm_provider = "nightshift" if not settings.sample_mode else "sample-stub"
+        is_sample = type(self.llm_client).__name__ == "ReplayLLMClient" or settings.sample_mode
+        llm_provider = "sample-stub" if is_sample else "nightshift"
+        redteam_model = "nemotron-sample-stub" if is_sample else (settings.model_redteam or "nemotron-sample-stub")
+        verifier_model = "nemotron-sample-stub" if is_sample else (settings.model_verifier or "nemotron-sample-stub")
 
         def log_trace(
             agent: str,
@@ -165,7 +168,7 @@ class AuditLoopOrchestrator:
                 agent="red_team",
                 message_type="candidate_inference",
                 outcome="success",
-                model=settings.model_redteam or "nemotron-sample-stub",
+                model=redteam_model,
                 latency_ms=(time.perf_counter() - t0) * 1000,
                 details={"round": active_round, "inferences_proposed": len(inference_ids)},
             )
@@ -188,7 +191,7 @@ class AuditLoopOrchestrator:
                 agent="verifier",
                 message_type="verdict",
                 outcome=verifier_outcome,
-                model=settings.model_verifier or "nemotron-sample-stub",
+                model=verifier_model,
                 latency_ms=(time.perf_counter() - t0) * 1000,
                 details={
                     "round": active_round,

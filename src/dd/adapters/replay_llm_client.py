@@ -94,23 +94,15 @@ class ReplayLLMClient(LLMClient):
             )
 
         settings = get_settings()
-
-        # 2. Live API Branch — TODO(phase4): Implement live NightshiftLLMClient calls here
-        if not settings.sample_mode:
-            # Placeholder for live Nightshift completion
-            raise NotImplementedError(
-                "Live Nightshift calls are configured in Phase 4. Set SAMPLE_MODE=true."
-            )
-
-        # 3. Deterministic Sample Generation (Sample Mode)
+        # 2. Deterministic Sample Generation (Sample / Replay Mode)
         content = self._generate_sample_response(agent, messages, response_schema)
         latency = (time.perf_counter() - t0) * 1000
 
         # Model tagging per agent for traceability
         if agent in ("red_team", "verifier"):
-            model_name = settings.model_redteam if settings.model_redteam != "sample-stub" else "nemotron-sample-stub"
+            model_name = "nemotron-sample-stub"
         else:
-            model_name = settings.model_extractor if settings.model_extractor != "sample-stub" else "extractor-sample-stub"
+            model_name = "extractor-sample-stub"
 
         response = LLMResponse(
             content=content,

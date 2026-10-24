@@ -1,0 +1,944 @@
+{
+  "audit_schema_version": "1.0.0",
+  "audit_metadata": {
+    "profile_id": "B",
+    "timestamp_utc": "2026-10-24T13:00:54.324837+00:00",
+    "trace_file": "C:\\Users\\siddh\\OneDrive\\Desktop\\dd\\Digital_Doppleganger\\runs\\run_20261024_130053_2d1181\\trace.jsonl",
+    "engine": "Digital Doppelg\u00e4nger Multi-Agent Auditor"
+  },
+  "exposure_summary": {
+    "exposure_score": 46.2,
+    "exposure_tier": "MODERATE",
+    "summary_description": "Moderate exposure allowing behavioral profiling and targeted spear-phishing.",
+    "level_counts": {
+      "CRITICAL": 0,
+      "HIGH": 2,
+      "MODERATE": 0,
+      "LOW": 1,
+      "INFORMATIONAL": 1
+    },
+    "total_findings": 4,
+    "top_risk_driver": "Attends regular bi-weekly specialist consultations at Oakridge Oncology & Hematology Suite 400",
+    "top_driver_risk": "HIGH"
+  },
+  "findings": [
+    {
+      "finding_id": "fnd_971ff85f",
+      "claim": "Attends regular bi-weekly specialist consultations at Oakridge Oncology & Hematology Suite 400",
+      "category": "health_exposure",
+      "verdict": "supported",
+      "confidence": 0.9,
+      "risk_level": {
+        "value": 4,
+        "name": "HIGH"
+      },
+      "attacker_models": [
+        "insurer",
+        "employer",
+        "scammer"
+      ],
+      "remediation": "Restrict Health Calendar Metadata & Disassociate Medical Orders: Mark all medical and specialist consultations on calendar applications as 'Busy / Private' without venue details.",
+      "counterfactual": {
+        "finding_id": "fnd_971ff85f",
+        "claim": "Attends regular bi-weekly specialist consultations at Oakridge Oncology & Hematology Suite 400",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_891",
+          "fact_b65",
+          "fact_23c",
+          "fact_994",
+          "fact_88b"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_891b40302ea8",
+            "fact_summary": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc",
+            "source": "pharmacy_orders",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Masking prescription record 'Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc' eliminates health and insurer underwriting exposure."
+          },
+          {
+            "fact_id": "fact_b65570ea9f26",
+            "fact_summary": "Immunology Supportive Therapy (Prescriber: Hematology-Oncolo",
+            "source": "pharmacy_orders",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Masking prescription record 'Immunology Supportive Therapy (Prescriber: Hematology-Oncolo' eliminates health and insurer underwriting exposure."
+          },
+          {
+            "fact_id": "fact_23ca82f16d3c",
+            "fact_summary": "Followup Consultation at Oakridge Oncology & Hematology Suit",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Followup Consultation at Oakridge Oncology & Hematology Suit' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_99414455b367",
+            "fact_summary": "Infusion Therapy Session at Oakridge Oncology & Hematology S",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Infusion Therapy Session at Oakridge Oncology & Hematology S' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_88bbbeda988d",
+            "fact_summary": "Specialist Consultation at Oakridge Oncology & Hematology Su",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Specialist Consultation at Oakridge Oncology & Hematology Su' to Private prevents cross-referencing internal schedule with public posts."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_891] (pharmacy_orders) reduces adversarial confidence from 90% to 0%. Masking prescription record 'Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc' eliminates health and insurer underwriting exposure."
+      },
+      "remediation_plan": {
+        "title": "Restrict Health Calendar Metadata & Disassociate Medical Orders",
+        "priority": "Immediate (Within 24 Hours)",
+        "category": "Platform Configuration",
+        "steps": [
+          "Mark all medical and specialist consultations on calendar applications as 'Busy / Private' without venue details.",
+          "Use pseudonymous or separate payment cards and shipping addresses for specialty pharmacy orders.",
+          "Opt out of health service data broker sharing agreements under HIPAA / GDPR settings."
+        ],
+        "impact": "Shields sensitive health conditions from insurance underwriters, employers, and data brokers."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_891b40302ea8",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.315430+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B02",
+          "item_category": "Targeted Anti-Emetic Formulation",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_b65570ea9f26",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.313930+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Immunology Supportive Therapy (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B03",
+          "item_category": "Immunology Supportive Therapy",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_23ca82f16d3c",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Followup Consultation at Oakridge Oncology & Hematology Suite 400 (2026-06-02T14:00:00Z to 2026-06-02T15:30:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B03",
+          "title": "Followup Consultation",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-06-02T14:00:00Z",
+          "end_time": "2026-06-02T15:30:00Z"
+        },
+        {
+          "_id": "fact_99414455b367",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Infusion Therapy Session at Oakridge Oncology & Hematology Suite 400 (2026-05-19T13:00:00Z to 2026-05-19T16:00:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B02",
+          "title": "Infusion Therapy Session",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-05-19T13:00:00Z",
+          "end_time": "2026-05-19T16:00:00Z"
+        },
+        {
+          "_id": "fact_88bbbeda988d",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Specialist Consultation at Oakridge Oncology & Hematology Suite 400 (2026-05-05T14:00:00Z to 2026-05-05T15:30:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B01",
+          "title": "Specialist Consultation",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-05-05T14:00:00Z",
+          "end_time": "2026-05-05T15:30:00Z"
+        },
+        {
+          "_id": "evid_73458188e7c0",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:00:54.320435+00:00",
+          "_updated_at": "2026-10-24T13:00:54.320435+00:00",
+          "_version": 1,
+          "inference_id": "infe_5f1619c7328e",
+          "verdict_label": "supported",
+          "confidence": 0.9,
+          "rationale": "Cross-verified by recurring calendar appointments at Oakridge Oncology Suite 400 and oncology prescriber pharmacy orders.",
+          "falsification_condition": "Visits conducted in a professional or accompanying family capacity.",
+          "strengthening_condition": "Formal physician appointment summary notes.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "plac_004929056144",
+          "_type": "Place",
+          "_source": "linker_medical_resolution",
+          "_sources": [
+            "linker_medical_resolution"
+          ],
+          "_created_by": "linker_medical_resolution",
+          "_created_at": "2026-10-24T13:00:54.317767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.317767+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "name": "Oakridge Oncology & Hematology Suite 400",
+          "category": "Medical Specialist Clinic",
+          "confidence": 0.95
+        },
+        {
+          "_id": "infe_5f1619c7328e",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:00:54.318767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.320435+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "claim": "Attends regular bi-weekly specialist consultations at Oakridge Oncology & Hematology Suite 400",
+          "category": "health_exposure",
+          "attacker_models": [
+            "insurer",
+            "employer",
+            "scammer"
+          ],
+          "confidence": 0.9,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_5f1619c7328e"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_5dbe638b",
+      "claim": "Chronic immunology and oncology supportive treatments present underwriting and insurer-relevant exposure risk",
+      "category": "financial_insurer",
+      "verdict": "weakly_supported",
+      "confidence": 0.75,
+      "risk_level": {
+        "value": 2,
+        "name": "LOW"
+      },
+      "attacker_models": [
+        "insurer"
+      ],
+      "remediation": "Enforce Medical Privacy on Prescriptions & Underwriting Records: Request strict confidential communications for all prescription pickups and pharmacy notices.",
+      "counterfactual": {
+        "finding_id": "fnd_5dbe638b",
+        "claim": "Chronic immunology and oncology supportive treatments present underwriting and insurer-relevant exposure risk",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_891",
+          "fact_b65"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_891b40302ea8",
+            "fact_summary": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc",
+            "source": "pharmacy_orders",
+            "pre_removal_confidence": 0.75,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.75,
+            "is_linchpin": true,
+            "impact_explanation": "Masking prescription record 'Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc' eliminates health and insurer underwriting exposure."
+          },
+          {
+            "fact_id": "fact_b65570ea9f26",
+            "fact_summary": "Immunology Supportive Therapy (Prescriber: Hematology-Oncolo",
+            "source": "pharmacy_orders",
+            "pre_removal_confidence": 0.75,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.75,
+            "is_linchpin": true,
+            "impact_explanation": "Masking prescription record 'Immunology Supportive Therapy (Prescriber: Hematology-Oncolo' eliminates health and insurer underwriting exposure."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_891] (pharmacy_orders) reduces adversarial confidence from 75% to 0%. Masking prescription record 'Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc' eliminates health and insurer underwriting exposure."
+      },
+      "remediation_plan": {
+        "title": "Enforce Medical Privacy on Prescriptions & Underwriting Records",
+        "priority": "Best Practice",
+        "category": "Operational Security",
+        "steps": [
+          "Request strict confidential communications for all prescription pickups and pharmacy notices.",
+          "Review employee benefits dashboard to ensure voluntary health app sync is turned off."
+        ],
+        "impact": "Prevents adverse insurance tiering and employment discrimination."
+      },
+      "evidence_chain": [
+        {
+          "_id": "evid_79510b2434a7",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:00:54.320435+00:00",
+          "_updated_at": "2026-10-24T13:00:54.320435+00:00",
+          "_version": 1,
+          "inference_id": "infe_fb2776978262",
+          "verdict_label": "weakly_supported",
+          "confidence": 0.75,
+          "rationale": "Pharmacy orders confirm supportive immunology prescriptions, representing potential underwriting exposure.",
+          "falsification_condition": "Prescription filled for acute non-chronic indication.",
+          "strengthening_condition": "Underwriting questionnaire disclosure logs.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "fact_891b40302ea8",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.315430+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B02",
+          "item_category": "Targeted Anti-Emetic Formulation",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_b65570ea9f26",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.313930+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Immunology Supportive Therapy (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B03",
+          "item_category": "Immunology Supportive Therapy",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "infe_fb2776978262",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:00:54.318767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.320435+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "claim": "Chronic immunology and oncology supportive treatments present underwriting and insurer-relevant exposure risk",
+          "category": "financial_insurer",
+          "attacker_models": [
+            "insurer"
+          ],
+          "confidence": 0.75,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_fb2776978262"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_6fe39de2",
+      "claim": "Clinically diagnosed with Stage 3 Diffuse Large B-cell Lymphoma",
+      "category": "health_diagnosis",
+      "verdict": "speculation",
+      "confidence": 0.25,
+      "risk_level": {
+        "value": 1,
+        "name": "INFORMATIONAL"
+      },
+      "attacker_models": [
+        "insurer"
+      ],
+      "remediation": "No remediation required: Claim evaluated as uncorroborated speculation by the verifier.",
+      "counterfactual": {
+        "finding_id": "fnd_6fe39de2",
+        "claim": "Clinically diagnosed with Stage 3 Diffuse Large B-cell Lymphoma",
+        "collapse_proved": false,
+        "linchpin_facts": [],
+        "excision_results": [],
+        "summary_explanation": "Claim is already classified as ungrounded speculation; no data excision is required because the adversary lacks corroborating proof."
+      },
+      "remediation_plan": {
+        "title": "No Action Required",
+        "priority": "Advisory",
+        "category": "Advisory",
+        "steps": [
+          "No security modification needed."
+        ],
+        "impact": "Neutralizes unverified claim."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_891b40302ea8",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.315430+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B02",
+          "item_category": "Targeted Anti-Emetic Formulation",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_b65570ea9f26",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.313930+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Immunology Supportive Therapy (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B03",
+          "item_category": "Immunology Supportive Therapy",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_23ca82f16d3c",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Followup Consultation at Oakridge Oncology & Hematology Suite 400 (2026-06-02T14:00:00Z to 2026-06-02T15:30:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B03",
+          "title": "Followup Consultation",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-06-02T14:00:00Z",
+          "end_time": "2026-06-02T15:30:00Z"
+        },
+        {
+          "_id": "fact_99414455b367",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Infusion Therapy Session at Oakridge Oncology & Hematology Suite 400 (2026-05-19T13:00:00Z to 2026-05-19T16:00:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B02",
+          "title": "Infusion Therapy Session",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-05-19T13:00:00Z",
+          "end_time": "2026-05-19T16:00:00Z"
+        },
+        {
+          "_id": "fact_88bbbeda988d",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Specialist Consultation at Oakridge Oncology & Hematology Suite 400 (2026-05-05T14:00:00Z to 2026-05-05T15:30:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B01",
+          "title": "Specialist Consultation",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-05-05T14:00:00Z",
+          "end_time": "2026-05-05T15:30:00Z"
+        },
+        {
+          "_id": "evid_fe53d39d9f19",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:00:54.320435+00:00",
+          "_updated_at": "2026-10-24T13:00:54.320435+00:00",
+          "_version": 1,
+          "inference_id": "infe_fc5cac012a5d",
+          "verdict_label": "speculation",
+          "confidence": 0.25,
+          "rationale": "Consultation at an oncology specialist suite and supportive immunology prescriptions do not substantiate a specific clinical staging diagnosis of Diffuse Large B-cell Lymphoma.",
+          "falsification_condition": "Pathology, histopathology, or clinical biopsy reports.",
+          "strengthening_condition": "Formal ICD-10 diagnostic coding records.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "plac_004929056144",
+          "_type": "Place",
+          "_source": "linker_medical_resolution",
+          "_sources": [
+            "linker_medical_resolution"
+          ],
+          "_created_by": "linker_medical_resolution",
+          "_created_at": "2026-10-24T13:00:54.317767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.317767+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "name": "Oakridge Oncology & Hematology Suite 400",
+          "category": "Medical Specialist Clinic",
+          "confidence": 0.95
+        },
+        {
+          "_id": "infe_fc5cac012a5d",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit",
+            "red_team_revision"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:00:54.318767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.321441+00:00",
+          "_version": 3,
+          "profile_id": "B",
+          "claim": "Clinically diagnosed with Stage 3 Diffuse Large B-cell Lymphoma",
+          "category": "health_diagnosis",
+          "attacker_models": [
+            "insurer"
+          ],
+          "confidence": 0.45,
+          "status": "settled",
+          "round_num": 1,
+          "id": "infe_fc5cac012a5d"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_da641e8e",
+      "claim": "Undergoing diagnostic evaluations for hematological symptoms",
+      "category": "health_exposure",
+      "verdict": "supported",
+      "confidence": 0.8,
+      "risk_level": {
+        "value": 4,
+        "name": "HIGH"
+      },
+      "attacker_models": [
+        "insurer"
+      ],
+      "remediation": "Restrict Health Calendar Metadata & Disassociate Medical Orders: Mark all medical and specialist consultations on calendar applications as 'Busy / Private' without venue details.",
+      "counterfactual": {
+        "finding_id": "fnd_da641e8e",
+        "claim": "Undergoing diagnostic evaluations for hematological symptoms",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_891",
+          "fact_b65",
+          "fact_23c",
+          "fact_994",
+          "fact_88b"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_891b40302ea8",
+            "fact_summary": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc",
+            "source": "pharmacy_orders",
+            "pre_removal_confidence": 0.8,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.8,
+            "is_linchpin": true,
+            "impact_explanation": "Masking prescription record 'Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc' eliminates health and insurer underwriting exposure."
+          },
+          {
+            "fact_id": "fact_b65570ea9f26",
+            "fact_summary": "Immunology Supportive Therapy (Prescriber: Hematology-Oncolo",
+            "source": "pharmacy_orders",
+            "pre_removal_confidence": 0.8,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.8,
+            "is_linchpin": true,
+            "impact_explanation": "Masking prescription record 'Immunology Supportive Therapy (Prescriber: Hematology-Oncolo' eliminates health and insurer underwriting exposure."
+          },
+          {
+            "fact_id": "fact_23ca82f16d3c",
+            "fact_summary": "Followup Consultation at Oakridge Oncology & Hematology Suit",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.8,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.8,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Followup Consultation at Oakridge Oncology & Hematology Suit' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_99414455b367",
+            "fact_summary": "Infusion Therapy Session at Oakridge Oncology & Hematology S",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.8,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.8,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Infusion Therapy Session at Oakridge Oncology & Hematology S' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_88bbbeda988d",
+            "fact_summary": "Specialist Consultation at Oakridge Oncology & Hematology Su",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.8,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.8,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Specialist Consultation at Oakridge Oncology & Hematology Su' to Private prevents cross-referencing internal schedule with public posts."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_891] (pharmacy_orders) reduces adversarial confidence from 80% to 0%. Masking prescription record 'Targeted Anti-Emetic Formulation (Prescriber: Hematology-Onc' eliminates health and insurer underwriting exposure."
+      },
+      "remediation_plan": {
+        "title": "Restrict Health Calendar Metadata & Disassociate Medical Orders",
+        "priority": "Immediate (Within 24 Hours)",
+        "category": "Platform Configuration",
+        "steps": [
+          "Mark all medical and specialist consultations on calendar applications as 'Busy / Private' without venue details.",
+          "Use pseudonymous or separate payment cards and shipping addresses for specialty pharmacy orders.",
+          "Opt out of health service data broker sharing agreements under HIPAA / GDPR settings."
+        ],
+        "impact": "Shields sensitive health conditions from insurance underwriters, employers, and data brokers."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_891b40302ea8",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.315430+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Targeted Anti-Emetic Formulation (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B02",
+          "item_category": "Targeted Anti-Emetic Formulation",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_b65570ea9f26",
+          "_type": "Fact",
+          "_source": "pharmacy_orders",
+          "_sources": [
+            "pharmacy_orders"
+          ],
+          "_created_by": "pharmacy_orders",
+          "_created_at": "2026-10-24T13:00:54.313930+00:00",
+          "_updated_at": "2026-10-24T13:00:54.315430+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "key": "pharmacy_prescription",
+          "value": "Immunology Supportive Therapy (Prescriber: Hematology-Oncology)",
+          "source_table": "pharmacy_orders",
+          "source_row_id": "PHM_B03",
+          "item_category": "Immunology Supportive Therapy",
+          "prescriber_specialty": "Hematology-Oncology"
+        },
+        {
+          "_id": "fact_23ca82f16d3c",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Followup Consultation at Oakridge Oncology & Hematology Suite 400 (2026-06-02T14:00:00Z to 2026-06-02T15:30:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B03",
+          "title": "Followup Consultation",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-06-02T14:00:00Z",
+          "end_time": "2026-06-02T15:30:00Z"
+        },
+        {
+          "_id": "fact_99414455b367",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Infusion Therapy Session at Oakridge Oncology & Hematology Suite 400 (2026-05-19T13:00:00Z to 2026-05-19T16:00:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B02",
+          "title": "Infusion Therapy Session",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-05-19T13:00:00Z",
+          "end_time": "2026-05-19T16:00:00Z"
+        },
+        {
+          "_id": "fact_88bbbeda988d",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:00:54.212479+00:00",
+          "_updated_at": "2026-10-24T13:00:54.212479+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "key": "calendar_event",
+          "value": "Specialist Consultation at Oakridge Oncology & Hematology Suite 400 (2026-05-05T14:00:00Z to 2026-05-05T15:30:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_B01",
+          "title": "Specialist Consultation",
+          "location": "Oakridge Oncology & Hematology Suite 400",
+          "start_time": "2026-05-05T14:00:00Z",
+          "end_time": "2026-05-05T15:30:00Z"
+        },
+        {
+          "_id": "evid_fe53d39d9f19",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:00:54.320435+00:00",
+          "_updated_at": "2026-10-24T13:00:54.320435+00:00",
+          "_version": 1,
+          "inference_id": "infe_fc5cac012a5d",
+          "verdict_label": "speculation",
+          "confidence": 0.25,
+          "rationale": "Consultation at an oncology specialist suite and supportive immunology prescriptions do not substantiate a specific clinical staging diagnosis of Diffuse Large B-cell Lymphoma.",
+          "falsification_condition": "Pathology, histopathology, or clinical biopsy reports.",
+          "strengthening_condition": "Formal ICD-10 diagnostic coding records.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "plac_004929056144",
+          "_type": "Place",
+          "_source": "linker_medical_resolution",
+          "_sources": [
+            "linker_medical_resolution"
+          ],
+          "_created_by": "linker_medical_resolution",
+          "_created_at": "2026-10-24T13:00:54.317767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.317767+00:00",
+          "_version": 1,
+          "profile_id": "B",
+          "name": "Oakridge Oncology & Hematology Suite 400",
+          "category": "Medical Specialist Clinic",
+          "confidence": 0.95
+        },
+        {
+          "_id": "evid_340f9e17ca1d",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:00:54.321441+00:00",
+          "_updated_at": "2026-10-24T13:00:54.321441+00:00",
+          "_version": 1,
+          "inference_id": "infe_c4477408e4ad",
+          "verdict_label": "supported",
+          "confidence": 0.8,
+          "rationale": "Appropriate revision: medical records corroborate ongoing specialist evaluations without claiming speculative cancer staging.",
+          "falsification_condition": "Routine non-specialist bloodwork results.",
+          "strengthening_condition": "Laboratory referral documentation.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "infe_fc5cac012a5d",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit",
+            "red_team_revision"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:00:54.318767+00:00",
+          "_updated_at": "2026-10-24T13:00:54.321441+00:00",
+          "_version": 3,
+          "profile_id": "B",
+          "claim": "Clinically diagnosed with Stage 3 Diffuse Large B-cell Lymphoma",
+          "category": "health_diagnosis",
+          "attacker_models": [
+            "insurer"
+          ],
+          "confidence": 0.45,
+          "status": "settled",
+          "round_num": 1,
+          "id": "infe_fc5cac012a5d"
+        },
+        {
+          "_id": "infe_c4477408e4ad",
+          "_type": "Inference",
+          "_source": "red_team_revision",
+          "_sources": [
+            "red_team_revision",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_revision",
+          "_created_at": "2026-10-24T13:00:54.321441+00:00",
+          "_updated_at": "2026-10-24T13:00:54.321441+00:00",
+          "_version": 2,
+          "profile_id": "B",
+          "claim": "Undergoing diagnostic evaluations for hematological symptoms",
+          "category": "health_exposure",
+          "attacker_models": [
+            "insurer"
+          ],
+          "confidence": 0.65,
+          "status": "verified",
+          "round_num": 2,
+          "id": "infe_c4477408e4ad"
+        }
+      ]
+    }
+  ],
+  "action_checklist": [
+    {
+      "title": "Restrict Health Calendar Metadata & Disassociate Medical Orders",
+      "priority": "Immediate (Within 24 Hours)",
+      "category": "Platform Configuration",
+      "steps": [
+        "Mark all medical and specialist consultations on calendar applications as 'Busy / Private' without venue details.",
+        "Use pseudonymous or separate payment cards and shipping addresses for specialty pharmacy orders.",
+        "Opt out of health service data broker sharing agreements under HIPAA / GDPR settings."
+      ],
+      "impact": "Shields sensitive health conditions from insurance underwriters, employers, and data brokers."
+    },
+    {
+      "title": "Enforce Medical Privacy on Prescriptions & Underwriting Records",
+      "priority": "Best Practice",
+      "category": "Operational Security",
+      "steps": [
+        "Request strict confidential communications for all prescription pickups and pharmacy notices.",
+        "Review employee benefits dashboard to ensure voluntary health app sync is turned off."
+      ],
+      "impact": "Prevents adverse insurance tiering and employment discrimination."
+    },
+    {
+      "title": "Restrict Health Calendar Metadata & Disassociate Medical Orders",
+      "priority": "Immediate (Within 24 Hours)",
+      "category": "Platform Configuration",
+      "steps": [
+        "Mark all medical and specialist consultations on calendar applications as 'Busy / Private' without venue details.",
+        "Use pseudonymous or separate payment cards and shipping addresses for specialty pharmacy orders.",
+        "Opt out of health service data broker sharing agreements under HIPAA / GDPR settings."
+      ],
+      "impact": "Shields sensitive health conditions from insurance underwriters, employers, and data brokers."
+    }
+  ]
+}

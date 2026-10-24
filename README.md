@@ -99,7 +99,11 @@ cd Digital_Doppleganger
 pip install -r requirements.txt
 
 # 3. Launch the Web UI in Sample Mode
+# Linux / macOS (Bash):
 SAMPLE_MODE=true uvicorn app.server:app --port 7860
+
+# Windows (PowerShell):
+$env:SAMPLE_MODE="true"; uvicorn app.server:app --port 7860
 ```
 Open **[http://localhost:7860](http://localhost:7860)** in your browser.
 
@@ -117,18 +121,21 @@ Launch the application and navigate between the tabs:
 6. **06 Evidence Graph**: Explore the interactive graph visualization showing interconnected facts, cross-platform pivots, and risk nodes.
 
 ### B. Command-Line Interface (CLI)
-Run audits directly from your terminal:
+Run audits directly from your terminal across any shell:
 ```bash
-# Run Profile A in Sample Mode
-SAMPLE_MODE=true python -m src.dd.main --profile A
+# Run Profile A in Sample Mode (offline DuckDB + Replay cache)
+python -m src.dd.main --profile A --sample
 
 # Run Profile B
-SAMPLE_MODE=true python -m src.dd.main --profile B
+python -m src.dd.main --profile B --sample
 
 # Run Profile C
-SAMPLE_MODE=true python -m src.dd.main --profile C
+python -m src.dd.main --profile C --sample
+
+# Or run all profiles in one command:
+python -m src.dd.main --profile ALL --sample
 ```
-Generated reports are saved as structured JSON and Markdown in `reports/`.
+Generated reports are saved as structured JSON and Markdown in `reports/` and `examples/outputs/`.
 
 ---
 

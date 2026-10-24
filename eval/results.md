@@ -5,11 +5,11 @@ with `DuckDBDataLayer` + `ReplayLLMClient`. Run on 2026-10-23.
 
 ## Overall Summary
 
-| Profile | Exposure Score | Tier     | Findings | Critical/High | Loop Iters | Exec Time |
-|---------|---------------|----------|----------|---------------|------------|-----------|
-| A       | 52.5          | HIGH     | 5        | 2             | 1          | 8.3 s     |
-| B       | 38.0          | MODERATE | 4        | 1             | 0          | 7.1 s     |
-| C       | 67.0          | HIGH     | 6        | 3             | 2          | 9.2 s     |
+| Profile | Exposure Score | Tier     | Findings | Critical/High | Loop Iters | Exec Time (Live / Sample) |
+|---------|---------------|----------|----------|---------------|------------|---------------------------|
+| A       | 61.0          | HIGH     | 5        | 2             | 2          | 66.4 s / 0.07 s           |
+| B       | 46.2          | MODERATE | 4        | 2             | 1          | 45.2 s / 0.04 s           |
+| C       | 64.2          | HIGH     | 5        | 2             | 1          | 48.1 s / 0.04 s           |
 
 Exposure score = weighted Privacy Exposure Index (0–100); weights per RiskLevel:
 CRITICAL=35, HIGH=25, MODERATE=15, LOW=5, INFORMATIONAL=0; capped at 100.
@@ -19,11 +19,11 @@ CRITICAL=35, HIGH=25, MODERATE=15, LOW=5, INFORMATIONAL=0; capped at 100.
 | Metric                              | A   | B   | C   |
 |-------------------------------------|-----|-----|-----|
 | Max rounds configured               | 2   | 2   | 2   |
-| Rounds executed                     | 2   | 1   | 2   |
-| Evidence requests issued            | 1   | 0   | 2   |
-| Evidence requests fulfilled         | 1   | 0   | 2   |
-| Verifier rejections (round 1)       | 1   | 0   | 2   |
-| Inferences upgraded after round 2   | 1   | 0   | 1   |
+| Rounds executed                     | 2   | 2   | 2   |
+| Evidence requests issued            | 1   | 0   | 0   |
+| Evidence requests fulfilled         | 1   | 0   | 0   |
+| Verifier rejections (round 1)       | 1   | 1   | 1   |
+| Inferences upgraded after round 2   | 1   | 1   | 1   |
 
 ## Verdict Distribution (all profiles)
 

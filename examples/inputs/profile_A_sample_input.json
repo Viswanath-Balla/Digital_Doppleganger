@@ -1,0 +1,240 @@
+{
+  "profile_id": "A",
+  "sources": {
+    "calendar_events": [
+      {
+        "profile_id": "A",
+        "event_id": "CAL_A01",
+        "title": "Engineering Standup",
+        "start_time": "2026-06-01T09:30:00Z",
+        "end_time": "2026-06-01T10:00:00Z",
+        "location": "Google Meet",
+        "description": "Daily backend sync"
+      },
+      {
+        "profile_id": "A",
+        "event_id": "CAL_A02",
+        "title": "Engineering Standup",
+        "start_time": "2026-06-02T09:30:00Z",
+        "end_time": "2026-06-02T10:00:00Z",
+        "location": "Google Meet",
+        "description": "Daily backend sync"
+      },
+      {
+        "profile_id": "A",
+        "event_id": "CAL_A03",
+        "title": "1:1 with Tech Lead",
+        "start_time": "2026-06-03T14:00:00Z",
+        "end_time": "2026-06-03T14:30:00Z",
+        "location": "Conf Room 3B",
+        "description": "Quarterly performance checkin"
+      },
+      {
+        "profile_id": "A",
+        "event_id": "CAL_A04",
+        "title": "PTO - Annual Hawaii Vacation",
+        "start_time": "2026-07-10T00:00:00Z",
+        "end_time": "2026-07-20T23:59:59Z",
+        "location": "Honolulu, HI",
+        "description": "Family summer vacation, house locked"
+      },
+      {
+        "profile_id": "A",
+        "event_id": "CAL_A05",
+        "title": "Flight: SFO to HNL",
+        "start_time": "2026-07-10T08:15:00Z",
+        "end_time": "2026-07-10T13:45:00Z",
+        "location": "United Airlines UA 238",
+        "description": "Outbound departure"
+      }
+    ],
+    "food_orders": [
+      {
+        "profile_id": "A",
+        "order_id": "ORD_A01",
+        "timestamp": "2026-06-01T19:15:00Z",
+        "delivery_address": "742 Evergreen Terr, Springfield",
+        "items": "Pad Thai, Spring Rolls",
+        "restaurant_name": "Siam Garden",
+        "total_amount": "28.5"
+      },
+      {
+        "profile_id": "A",
+        "order_id": "ORD_A02",
+        "timestamp": "2026-06-04T19:30:00Z",
+        "delivery_address": "742 Evergreen Terr, Springfield",
+        "items": "Margherita Pizza, Diet Coke",
+        "restaurant_name": "Luigi's Wood Fired",
+        "total_amount": "22.0"
+      },
+      {
+        "profile_id": "A",
+        "order_id": "ORD_A03",
+        "timestamp": "2026-06-09T18:45:00Z",
+        "delivery_address": "742 Evergreen Terr, Springfield",
+        "items": "Salmon Poke Bowl",
+        "restaurant_name": "Aloha Poke",
+        "total_amount": "19.75"
+      },
+      {
+        "profile_id": "A",
+        "order_id": "ORD_A04",
+        "timestamp": "2026-06-12T20:00:00Z",
+        "delivery_address": "742 Evergreen Terr, Springfield",
+        "items": "Veggie Burrito, Guacamole",
+        "restaurant_name": "Cantina Mexicana",
+        "total_amount": "17.5"
+      },
+      {
+        "profile_id": "A",
+        "order_id": "ORD_A05",
+        "timestamp": "2026-06-16T19:20:00Z",
+        "delivery_address": "742 Evergreen Terr, Springfield",
+        "items": "Chicken Tikka Masala, Garlic Naan",
+        "restaurant_name": "Taj Flavors",
+        "total_amount": "31.0"
+      }
+    ],
+    "pharmacy_orders": [
+      {
+        "profile_id": "A",
+        "order_id": "PHM_A01",
+        "timestamp": "2026-04-10T10:00:00Z",
+        "item_category": "Daily Multivitamin 100ct",
+        "prescriber_specialty": "General Wellness",
+        "delivery_address": "742 Evergreen Terr, Springfield"
+      },
+      {
+        "profile_id": "A",
+        "order_id": "PHM_A02",
+        "timestamp": "2026-05-12T11:00:00Z",
+        "item_category": "Ibuprofen 200mg",
+        "prescriber_specialty": "General Wellness",
+        "delivery_address": "742 Evergreen Terr, Springfield"
+      }
+    ],
+    "profile_fields": [
+      {
+        "profile_id": "A",
+        "field_name": "full_name",
+        "field_value": "Alex Rivera",
+        "source_platform": "linkedin",
+        "updated_at": "2026-01-15T09:00:00Z"
+      },
+      {
+        "profile_id": "A",
+        "field_name": "email",
+        "field_value": "alex.rivera.dev@gmail.com",
+        "source_platform": "google",
+        "updated_at": "2026-01-10T08:30:00Z"
+      },
+      {
+        "profile_id": "A",
+        "field_name": "phone",
+        "field_value": "+1-555-0142",
+        "source_platform": "uber_eats",
+        "updated_at": "2026-02-01T12:00:00Z"
+      },
+      {
+        "profile_id": "A",
+        "field_name": "employer",
+        "field_value": "Nexora Systems",
+        "source_platform": "linkedin",
+        "updated_at": "2026-01-15T09:00:00Z"
+      },
+      {
+        "profile_id": "A",
+        "field_name": "job_title",
+        "field_value": "Senior Backend Engineer",
+        "source_platform": "linkedin",
+        "updated_at": "2026-01-15T09:00:00Z"
+      }
+    ],
+    "social_posts": [
+      {
+        "profile_id": "A",
+        "post_id": "SOC_A01",
+        "timestamp": "2026-07-10T07:00:00Z",
+        "platform": "twitter",
+        "text_content": "Bag packed, lights off, and airport bound for the next 10 days! Hawaii here we come \ud83c\udf3a\u2708\ufe0f",
+        "location_tag": "SFO International Airport",
+        "media_type": "photo"
+      },
+      {
+        "profile_id": "A",
+        "post_id": "SOC_A02",
+        "timestamp": "2026-07-15T18:00:00Z",
+        "platform": "instagram",
+        "text_content": "Sunset over Waikiki beach. Unplugged and peaceful.",
+        "location_tag": "Honolulu, Hawaii",
+        "media_type": "photo"
+      },
+      {
+        "profile_id": "A",
+        "post_id": "SOC_A03",
+        "timestamp": "2026-06-03T07:25:00Z",
+        "platform": "twitter",
+        "text_content": "Beautiful crisp 62F morning for a run around the neighborhood. Coffee time!",
+        "location_tag": "Springfield",
+        "media_type": "text"
+      }
+    ],
+    "strava_activities": [
+      {
+        "profile_id": "A",
+        "activity_id": "STR_A01",
+        "activity_type": "Run",
+        "start_time": "2026-06-01T06:30:00Z",
+        "end_time": "2026-06-01T07:15:00Z",
+        "start_lat": "39.7817",
+        "start_lon": "-89.6501",
+        "distance_km": "6.2",
+        "route_summary": "Morning loop via Elm Park"
+      },
+      {
+        "profile_id": "A",
+        "activity_id": "STR_A02",
+        "activity_type": "Run",
+        "start_time": "2026-06-02T06:32:00Z",
+        "end_time": "2026-06-02T07:16:00Z",
+        "start_lat": "39.7817",
+        "start_lon": "-89.6501",
+        "distance_km": "6.1",
+        "route_summary": "Morning loop via Elm Park"
+      },
+      {
+        "profile_id": "A",
+        "activity_id": "STR_A03",
+        "activity_type": "Run",
+        "start_time": "2026-06-03T06:29:00Z",
+        "end_time": "2026-06-03T07:14:00Z",
+        "start_lat": "39.7817",
+        "start_lon": "-89.6501",
+        "distance_km": "6.3",
+        "route_summary": "Morning loop via Elm Park"
+      },
+      {
+        "profile_id": "A",
+        "activity_id": "STR_A04",
+        "activity_type": "Run",
+        "start_time": "2026-06-04T06:31:00Z",
+        "end_time": "2026-06-04T07:17:00Z",
+        "start_lat": "39.7817",
+        "start_lon": "-89.6501",
+        "distance_km": "6.2",
+        "route_summary": "Morning loop via Elm Park"
+      },
+      {
+        "profile_id": "A",
+        "activity_id": "STR_A05",
+        "activity_type": "Run",
+        "start_time": "2026-06-05T06:30:00Z",
+        "end_time": "2026-06-05T07:15:00Z",
+        "start_lat": "39.7817",
+        "start_lon": "-89.6501",
+        "distance_km": "6.0",
+        "route_summary": "Morning loop via Elm Park"
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-.PHONY: run ui test eval clean
+.PHONY: run ui test eval clean audit smoke-zetaris smoke-nightshift
 
 PROFILE ?= A
 SAMPLE_MODE ?= true
@@ -18,7 +18,11 @@ test:
 
 # ── Eval ────────────────────────────────────────────────────────────
 eval:
-	python eval/run_eval.py
+	python -m src.dd.eval
+
+# ── Compliance & Judging Audit ──────────────────────────────────────
+audit:
+	python scripts/audit.py
 
 # ── Smoke tests ─────────────────────────────────────────────────────
 smoke-zetaris:

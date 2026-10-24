@@ -1,0 +1,790 @@
+{
+  "audit_schema_version": "1.0.0",
+  "audit_metadata": {
+    "profile_id": "C",
+    "timestamp_utc": "2026-10-24T13:01:09.260873+00:00",
+    "trace_file": "C:\\Users\\siddh\\OneDrive\\Desktop\\dd\\Digital_Doppleganger\\runs\\run_20261024_130108_994056\\trace.jsonl",
+    "engine": "Digital Doppelg\u00e4nger Multi-Agent Auditor"
+  },
+  "exposure_summary": {
+    "exposure_score": 64.2,
+    "exposure_tier": "HIGH",
+    "summary_description": "High privacy exposure enabling precise location, routine, or credential compromise.",
+    "level_counts": {
+      "CRITICAL": 0,
+      "HIGH": 2,
+      "MODERATE": 2,
+      "LOW": 0,
+      "INFORMATIONAL": 1
+    },
+    "total_findings": 5,
+    "top_risk_driver": "Date of birth is May 14, 1996",
+    "top_driver_risk": "HIGH"
+  },
+  "findings": [
+    {
+      "finding_id": "fnd_e0740504",
+      "claim": "Date of birth is May 14, 1996",
+      "category": "identity_kba",
+      "verdict": "supported",
+      "confidence": 0.95,
+      "risk_level": {
+        "value": 4,
+        "name": "HIGH"
+      },
+      "attacker_models": [
+        "scammer",
+        "data_broker"
+      ],
+      "remediation": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details: Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+      "counterfactual": {
+        "finding_id": "fnd_e0740504",
+        "claim": "Date of birth is May 14, 1996",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_8cf",
+          "fact_f06",
+          "fact_fe6",
+          "fact_237"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_8cf232492ce0",
+            "fact_summary": "Happy 3rd birthday to my favorite golden retriever, Barnaby!",
+            "source": "social_posts",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Deleting public post 'Happy 3rd birthday to my favorite golden retriever, Barnaby!' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+          },
+          {
+            "fact_id": "fact_f06184ffad66",
+            "fact_summary": "Officially entering my 30s today! Born May 14, 1996 and lovi",
+            "source": "social_posts",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Deleting public post 'Officially entering my 30s today! Born May 14, 1996 and lovi' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+          },
+          {
+            "fact_id": "fact_fe6f940c92a6",
+            "fact_summary": "My 30th Birthday Dinner! at Bistro Central, San Francisco (2",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'My 30th Birthday Dinner! at Bistro Central, San Francisco (2' to Private prevents cross-referencing internal schedule with public posts."
+          },
+          {
+            "fact_id": "fact_2376030ce978",
+            "fact_summary": "1996",
+            "source": "profile_fields",
+            "pre_removal_confidence": 0.95,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.95,
+            "is_linchpin": true,
+            "impact_explanation": "Excision of fact [fact_237] breaks the corroboration chain from profile_fields."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_8cf] (social_posts) reduces adversarial confidence from 95% to 0%. Deleting public post 'Happy 3rd birthday to my favorite golden retriever, Barnaby!' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+      },
+      "remediation_plan": {
+        "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+        "priority": "Immediate (Within 24 Hours)",
+        "category": "Identity Protection",
+        "steps": [
+          "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+          "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+          "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+        ],
+        "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_8cf232492ce0",
+          "_type": "Fact",
+          "_source": "social_posts",
+          "_sources": [
+            "social_posts"
+          ],
+          "_created_by": "social_posts",
+          "_created_at": "2026-10-24T13:01:09.199171+00:00",
+          "_updated_at": "2026-10-24T13:01:09.199171+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "social_post_text",
+          "value": "Happy 3rd birthday to my favorite golden retriever, Barnaby! Best hiking partner ever \ud83d\udc36",
+          "source_table": "social_posts",
+          "source_row_id": "SOC_C02",
+          "platform": "instagram",
+          "timestamp": "2026-04-05T15:00:00Z",
+          "location_tag": "Marin Headlands"
+        },
+        {
+          "_id": "fact_f06184ffad66",
+          "_type": "Fact",
+          "_source": "social_posts",
+          "_sources": [
+            "social_posts"
+          ],
+          "_created_by": "social_posts",
+          "_created_at": "2026-10-24T13:01:09.199171+00:00",
+          "_updated_at": "2026-10-24T13:01:09.199171+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "social_post_text",
+          "value": "Officially entering my 30s today! Born May 14, 1996 and loving the journey so far \ud83c\udf89",
+          "source_table": "social_posts",
+          "source_row_id": "SOC_C01",
+          "platform": "instagram",
+          "timestamp": "2026-05-14T10:00:00Z",
+          "location_tag": "San Francisco, CA"
+        },
+        {
+          "_id": "fact_fe6f940c92a6",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:01:09.155885+00:00",
+          "_updated_at": "2026-10-24T13:01:09.155885+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "calendar_event",
+          "value": "My 30th Birthday Dinner! at Bistro Central, San Francisco (2026-05-14T19:00:00Z to 2026-05-14T22:00:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_C01",
+          "title": "My 30th Birthday Dinner!",
+          "location": "Bistro Central, San Francisco",
+          "start_time": "2026-05-14T19:00:00Z",
+          "end_time": "2026-05-14T22:00:00Z"
+        },
+        {
+          "_id": "fact_2376030ce978",
+          "_type": "Fact",
+          "_source": "profile_fields",
+          "_sources": [
+            "profile_fields"
+          ],
+          "_created_by": "profile_fields",
+          "_created_at": "2026-10-24T13:01:09.009634+00:00",
+          "_updated_at": "2026-10-24T13:01:09.009634+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "birth_year",
+          "value": "1996",
+          "source_table": "profile_fields",
+          "source_platform": "forum"
+        },
+        {
+          "_id": "evid_5bc39f7ccf27",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:01:09.256881+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 1,
+          "inference_id": "infe_27a4854759d1",
+          "verdict_label": "supported",
+          "confidence": 0.95,
+          "rationale": "Corroborated by social post declaring birth date and calendar milestone 30th birthday dinner.",
+          "falsification_condition": "Social post humorously referencing an altered age.",
+          "strengthening_condition": "Government ID or state license record.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "acco_4e43b1bbd7b1",
+          "_type": "Account",
+          "_source": "linker_kba_resolution",
+          "_sources": [
+            "linker_kba_resolution"
+          ],
+          "_created_by": "linker_kba_resolution",
+          "_created_at": "2026-10-24T13:01:09.254732+00:00",
+          "_updated_at": "2026-10-24T13:01:09.254732+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "account_type": "Identity Profile",
+          "claim": "Date of Birth: May 14, 1996",
+          "confidence": 0.95
+        },
+        {
+          "_id": "infe_27a4854759d1",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:01:09.255747+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 2,
+          "profile_id": "C",
+          "claim": "Date of birth is May 14, 1996",
+          "category": "identity_kba",
+          "attacker_models": [
+            "scammer",
+            "data_broker"
+          ],
+          "confidence": 0.95,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_27a4854759d1"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_e5a73c1c",
+      "claim": "Pet dog name is Barnaby (Golden Retriever)",
+      "category": "identity_kba",
+      "verdict": "supported",
+      "confidence": 0.9,
+      "risk_level": {
+        "value": 4,
+        "name": "HIGH"
+      },
+      "attacker_models": [
+        "scammer",
+        "data_broker"
+      ],
+      "remediation": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details: Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+      "counterfactual": {
+        "finding_id": "fnd_e5a73c1c",
+        "claim": "Pet dog name is Barnaby (Golden Retriever)",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_8cf",
+          "fact_974"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_8cf232492ce0",
+            "fact_summary": "Happy 3rd birthday to my favorite golden retriever, Barnaby!",
+            "source": "social_posts",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Deleting public post 'Happy 3rd birthday to my favorite golden retriever, Barnaby!' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+          },
+          {
+            "fact_id": "fact_974d5e822fda",
+            "fact_summary": "Barnaby Vet Annual Checkup at Bay Animal Hospital (2026-05-2",
+            "source": "calendar_events",
+            "pre_removal_confidence": 0.9,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.9,
+            "is_linchpin": true,
+            "impact_explanation": "Setting event 'Barnaby Vet Annual Checkup at Bay Animal Hospital (2026-05-2' to Private prevents cross-referencing internal schedule with public posts."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_8cf] (social_posts) reduces adversarial confidence from 90% to 0%. Deleting public post 'Happy 3rd birthday to my favorite golden retriever, Barnaby!' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+      },
+      "remediation_plan": {
+        "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+        "priority": "Immediate (Within 24 Hours)",
+        "category": "Identity Protection",
+        "steps": [
+          "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+          "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+          "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+        ],
+        "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+      },
+      "evidence_chain": [
+        {
+          "_id": "fact_8cf232492ce0",
+          "_type": "Fact",
+          "_source": "social_posts",
+          "_sources": [
+            "social_posts"
+          ],
+          "_created_by": "social_posts",
+          "_created_at": "2026-10-24T13:01:09.199171+00:00",
+          "_updated_at": "2026-10-24T13:01:09.199171+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "social_post_text",
+          "value": "Happy 3rd birthday to my favorite golden retriever, Barnaby! Best hiking partner ever \ud83d\udc36",
+          "source_table": "social_posts",
+          "source_row_id": "SOC_C02",
+          "platform": "instagram",
+          "timestamp": "2026-04-05T15:00:00Z",
+          "location_tag": "Marin Headlands"
+        },
+        {
+          "_id": "fact_974d5e822fda",
+          "_type": "Fact",
+          "_source": "calendar_events",
+          "_sources": [
+            "calendar_events"
+          ],
+          "_created_by": "calendar_events",
+          "_created_at": "2026-10-24T13:01:09.155885+00:00",
+          "_updated_at": "2026-10-24T13:01:09.155885+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "calendar_event",
+          "value": "Barnaby Vet Annual Checkup at Bay Animal Hospital (2026-05-20T11:00:00Z to 2026-05-20T12:00:00Z)",
+          "source_table": "calendar_events",
+          "source_row_id": "CAL_C02",
+          "title": "Barnaby Vet Annual Checkup",
+          "location": "Bay Animal Hospital",
+          "start_time": "2026-05-20T11:00:00Z",
+          "end_time": "2026-05-20T12:00:00Z"
+        },
+        {
+          "_id": "evid_d91313c7e9d9",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:01:09.256881+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 1,
+          "inference_id": "infe_567baced780c",
+          "verdict_label": "supported",
+          "confidence": 0.9,
+          "rationale": "Corroborated by veterinary checkup calendar event and social media post referencing Barnaby the Golden Retriever.",
+          "falsification_condition": "Dog belongs to a relative or neighbor.",
+          "strengthening_condition": "Veterinary billing invoice or pet registration tag.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "acco_cf9c9d051f6c",
+          "_type": "Account",
+          "_source": "linker_kba_resolution",
+          "_sources": [
+            "linker_kba_resolution"
+          ],
+          "_created_by": "linker_kba_resolution",
+          "_created_at": "2026-10-24T13:01:09.254732+00:00",
+          "_updated_at": "2026-10-24T13:01:09.254732+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "account_type": "KBA Security Question Anchor",
+          "claim": "Pet Name: Barnaby",
+          "confidence": 0.9
+        },
+        {
+          "_id": "infe_567baced780c",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:01:09.255747+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 2,
+          "profile_id": "C",
+          "claim": "Pet dog name is Barnaby (Golden Retriever)",
+          "category": "identity_kba",
+          "attacker_models": [
+            "scammer",
+            "data_broker"
+          ],
+          "confidence": 0.9,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_567baced780c"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_bbfdfc97",
+      "claim": "First school attended was Oakfield Elementary",
+      "category": "identity_kba",
+      "verdict": "weakly_supported",
+      "confidence": 0.7,
+      "risk_level": {
+        "value": 3,
+        "name": "MODERATE"
+      },
+      "attacker_models": [
+        "scammer"
+      ],
+      "remediation": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details: Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+      "counterfactual": {
+        "finding_id": "fnd_bbfdfc97",
+        "claim": "First school attended was Oakfield Elementary",
+        "collapse_proved": true,
+        "linchpin_facts": [
+          "fact_63f",
+          "fact_a2a"
+        ],
+        "excision_results": [
+          {
+            "fact_id": "fact_63f2c757430d",
+            "fact_summary": "Great catching up with old classmates at the Oakfield Elemen",
+            "source": "social_posts",
+            "pre_removal_confidence": 0.7,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.7,
+            "is_linchpin": true,
+            "impact_explanation": "Deleting public post 'Great catching up with old classmates at the Oakfield Elemen' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+          },
+          {
+            "fact_id": "fact_a2a13d36dc21",
+            "fact_summary": "Oakfield",
+            "source": "profile_fields",
+            "pre_removal_confidence": 0.7,
+            "post_removal_confidence": 0.0,
+            "confidence_drop": 0.7,
+            "is_linchpin": true,
+            "impact_explanation": "Excision of fact [fact_a2a] breaks the corroboration chain from profile_fields."
+          }
+        ],
+        "summary_explanation": "Causal Collapse Verified: Excising linchpin fact [fact_63f] (social_posts) reduces adversarial confidence from 70% to 0%. Deleting public post 'Great catching up with old classmates at the Oakfield Elemen' eliminates the broadcast leak, depriving an external attacker of timing/vacation confirmation."
+      },
+      "remediation_plan": {
+        "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+        "priority": "Short-Term (Within 7 Days)",
+        "category": "Identity Protection",
+        "steps": [
+          "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+          "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+          "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+        ],
+        "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+      },
+      "evidence_chain": [
+        {
+          "_id": "evid_34531b2522f4",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:01:09.256881+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 1,
+          "inference_id": "infe_65146a287c55",
+          "verdict_label": "weakly_supported",
+          "confidence": 0.7,
+          "rationale": "Single social post mentioning 20-year alumni picnic indicates school connection, though lacks official transcripts.",
+          "falsification_condition": "Attended picnic as a guest or spouse of an alumnus.",
+          "strengthening_condition": "Yearbook photo or school enrollment archive.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "fact_63f2c757430d",
+          "_type": "Fact",
+          "_source": "social_posts",
+          "_sources": [
+            "social_posts"
+          ],
+          "_created_by": "social_posts",
+          "_created_at": "2026-10-24T13:01:09.199171+00:00",
+          "_updated_at": "2026-10-24T13:01:09.199171+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "social_post_text",
+          "value": "Great catching up with old classmates at the Oakfield Elementary 20-year alumni picnic! Can't believe it's been that long.",
+          "source_table": "social_posts",
+          "source_row_id": "SOC_C03",
+          "platform": "facebook",
+          "timestamp": "2026-03-22T19:00:00Z",
+          "location_tag": "Oakfield Park"
+        },
+        {
+          "_id": "fact_a2a13d36dc21",
+          "_type": "Fact",
+          "_source": "profile_fields",
+          "_sources": [
+            "profile_fields"
+          ],
+          "_created_by": "profile_fields",
+          "_created_at": "2026-10-24T13:01:09.009634+00:00",
+          "_updated_at": "2026-10-24T13:01:09.009634+00:00",
+          "_version": 1,
+          "profile_id": "C",
+          "key": "hometown",
+          "value": "Oakfield",
+          "source_table": "profile_fields",
+          "source_platform": "facebook"
+        },
+        {
+          "_id": "infe_65146a287c55",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:01:09.255747+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 2,
+          "profile_id": "C",
+          "claim": "First school attended was Oakfield Elementary",
+          "category": "identity_kba",
+          "attacker_models": [
+            "scammer"
+          ],
+          "confidence": 0.7,
+          "status": "verified",
+          "round_num": 1,
+          "id": "infe_65146a287c55"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_33124c20",
+      "claim": "Mother's maiden name is Vance",
+      "category": "identity_kba",
+      "verdict": "speculation",
+      "confidence": 0.2,
+      "risk_level": {
+        "value": 1,
+        "name": "INFORMATIONAL"
+      },
+      "attacker_models": [
+        "scammer"
+      ],
+      "remediation": "No remediation required: Claim evaluated as uncorroborated speculation by the verifier.",
+      "counterfactual": {
+        "finding_id": "fnd_33124c20",
+        "claim": "Mother's maiden name is Vance",
+        "collapse_proved": false,
+        "linchpin_facts": [],
+        "excision_results": [],
+        "summary_explanation": "Claim is already classified as ungrounded speculation; no data excision is required because the adversary lacks corroborating proof."
+      },
+      "remediation_plan": {
+        "title": "No Action Required",
+        "priority": "Advisory",
+        "category": "Advisory",
+        "steps": [
+          "No security modification needed."
+        ],
+        "impact": "Neutralizes unverified claim."
+      },
+      "evidence_chain": [
+        {
+          "_id": "evid_5055cb91fffb",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:01:09.256881+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 1,
+          "inference_id": "infe_a4594cc827f3",
+          "verdict_label": "speculation",
+          "confidence": 0.2,
+          "rationale": "No corroborating maternal records, public registry entries, or family tree documentation found. Claim represents ungrounded speculation.",
+          "falsification_condition": "Verified birth certificate or public genealogical index.",
+          "strengthening_condition": "Direct maternal surname documentation.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "infe_a4594cc827f3",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit",
+            "red_team_revision"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:01:09.255747+00:00",
+          "_updated_at": "2026-10-24T13:01:09.257880+00:00",
+          "_version": 3,
+          "profile_id": "C",
+          "claim": "Mother's maiden name is Vance",
+          "category": "identity_kba",
+          "attacker_models": [
+            "scammer"
+          ],
+          "confidence": 0.35,
+          "status": "settled",
+          "round_num": 1,
+          "id": "infe_a4594cc827f3"
+        }
+      ]
+    },
+    {
+      "finding_id": "fnd_b4c08e3e",
+      "claim": "Target of unverified surname speculation on open forums",
+      "category": "identity_kba",
+      "verdict": "weakly_supported",
+      "confidence": 0.5,
+      "risk_level": {
+        "value": 3,
+        "name": "MODERATE"
+      },
+      "attacker_models": [
+        "scammer"
+      ],
+      "remediation": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details: Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+      "counterfactual": {
+        "finding_id": "fnd_b4c08e3e",
+        "claim": "Target of unverified surname speculation on open forums",
+        "collapse_proved": false,
+        "linchpin_facts": [],
+        "excision_results": [],
+        "summary_explanation": "No atomic facts found in evidence chain."
+      },
+      "remediation_plan": {
+        "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+        "priority": "Short-Term (Within 7 Days)",
+        "category": "Identity Protection",
+        "steps": [
+          "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+          "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+          "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+        ],
+        "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+      },
+      "evidence_chain": [
+        {
+          "_id": "evid_5055cb91fffb",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:01:09.256881+00:00",
+          "_updated_at": "2026-10-24T13:01:09.256881+00:00",
+          "_version": 1,
+          "inference_id": "infe_a4594cc827f3",
+          "verdict_label": "speculation",
+          "confidence": 0.2,
+          "rationale": "No corroborating maternal records, public registry entries, or family tree documentation found. Claim represents ungrounded speculation.",
+          "falsification_condition": "Verified birth certificate or public genealogical index.",
+          "strengthening_condition": "Direct maternal surname documentation.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "evid_46c980e0b69b",
+          "_type": "Evidence",
+          "_source": "verifier_audit",
+          "_sources": [
+            "verifier_audit"
+          ],
+          "_created_by": "verifier_audit",
+          "_created_at": "2026-10-24T13:01:09.258875+00:00",
+          "_updated_at": "2026-10-24T13:01:09.258875+00:00",
+          "_version": 1,
+          "inference_id": "infe_495bd803764d",
+          "verdict_label": "weakly_supported",
+          "confidence": 0.5,
+          "rationale": "Reflects online discussion chatter without corroborating primary genealogical records.",
+          "falsification_condition": "Disproved ancestry record.",
+          "strengthening_condition": "Census record or family announcement.",
+          "verified_by": "verifier"
+        },
+        {
+          "_id": "infe_a4594cc827f3",
+          "_type": "Inference",
+          "_source": "red_team_threat_model",
+          "_sources": [
+            "red_team_threat_model",
+            "verifier_audit",
+            "red_team_revision"
+          ],
+          "_created_by": "red_team_threat_model",
+          "_created_at": "2026-10-24T13:01:09.255747+00:00",
+          "_updated_at": "2026-10-24T13:01:09.257880+00:00",
+          "_version": 3,
+          "profile_id": "C",
+          "claim": "Mother's maiden name is Vance",
+          "category": "identity_kba",
+          "attacker_models": [
+            "scammer"
+          ],
+          "confidence": 0.35,
+          "status": "settled",
+          "round_num": 1,
+          "id": "infe_a4594cc827f3"
+        },
+        {
+          "_id": "infe_495bd803764d",
+          "_type": "Inference",
+          "_source": "red_team_revision",
+          "_sources": [
+            "red_team_revision",
+            "verifier_audit"
+          ],
+          "_created_by": "red_team_revision",
+          "_created_at": "2026-10-24T13:01:09.257880+00:00",
+          "_updated_at": "2026-10-24T13:01:09.258875+00:00",
+          "_version": 2,
+          "profile_id": "C",
+          "claim": "Target of unverified surname speculation on open forums",
+          "category": "identity_kba",
+          "attacker_models": [
+            "scammer"
+          ],
+          "confidence": 0.4,
+          "status": "verified",
+          "round_num": 2,
+          "id": "infe_495bd803764d"
+        }
+      ]
+    }
+  ],
+  "action_checklist": [
+    {
+      "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+      "priority": "Immediate (Within 24 Hours)",
+      "category": "Identity Protection",
+      "steps": [
+        "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+        "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+        "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+      ],
+      "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+    },
+    {
+      "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+      "priority": "Immediate (Within 24 Hours)",
+      "category": "Identity Protection",
+      "steps": [
+        "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+        "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+        "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+      ],
+      "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+    },
+    {
+      "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+      "priority": "Short-Term (Within 7 Days)",
+      "category": "Identity Protection",
+      "steps": [
+        "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+        "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+        "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+      ],
+      "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+    },
+    {
+      "title": "Deprecate Knowledge-Based Authentication (KBA) & Scrub Bio Details",
+      "priority": "Short-Term (Within 7 Days)",
+      "category": "Identity Protection",
+      "steps": [
+        "Replace pet names, maiden names, and high schools in banking security questions with random passphrases.",
+        "Remove birth dates, high school graduation years, and pet names from public social media profiles.",
+        "Upgrade all banking and critical accounts to hardware-based FIDO2 / WebAuthn MFA."
+      ],
+      "impact": "Immunizes accounts against social-engineering resets and credential stuffing attacks."
+    }
+  ]
+}

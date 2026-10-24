@@ -1,0 +1,145 @@
+{
+  "profile_id": "C",
+  "sources": {
+    "calendar_events": [
+      {
+        "profile_id": "C",
+        "event_id": "CAL_C01",
+        "title": "My 30th Birthday Dinner!",
+        "start_time": "2026-05-14T19:00:00Z",
+        "end_time": "2026-05-14T22:00:00Z",
+        "location": "Bistro Central, San Francisco",
+        "description": "Celebrating with close friends and family"
+      },
+      {
+        "profile_id": "C",
+        "event_id": "CAL_C02",
+        "title": "Barnaby Vet Annual Checkup",
+        "start_time": "2026-05-20T11:00:00Z",
+        "end_time": "2026-05-20T12:00:00Z",
+        "location": "Bay Animal Hospital",
+        "description": "Rabies vaccine booster for Barnaby"
+      }
+    ],
+    "food_orders": [
+      {
+        "profile_id": "C",
+        "order_id": "ORD_C01",
+        "timestamp": "2026-04-10T19:00:00Z",
+        "delivery_address": "88 Clipper St, San Francisco",
+        "items": "Spicy Ramen, Gyoza",
+        "restaurant_name": "Ramen Hiro",
+        "total_amount": "26.0"
+      },
+      {
+        "profile_id": "C",
+        "order_id": "ORD_C02",
+        "timestamp": "2026-04-18T19:30:00Z",
+        "delivery_address": "88 Clipper St, San Francisco",
+        "items": "Chicken Katsu Curry",
+        "restaurant_name": "Tokyo Express",
+        "total_amount": "20.0"
+      }
+    ],
+    "pharmacy_orders": [
+      {
+        "profile_id": "C",
+        "order_id": "PHM_C01",
+        "timestamp": "2026-03-15T14:00:00Z",
+        "item_category": "Cetirizine 10mg Anti-Allergy",
+        "prescriber_specialty": "Allergy & Asthma",
+        "delivery_address": "88 Clipper St, San Francisco"
+      }
+    ],
+    "profile_fields": [
+      {
+        "profile_id": "C",
+        "field_name": "full_name",
+        "field_value": "Charlie Chen",
+        "source_platform": "instagram",
+        "updated_at": "2026-01-20T16:00:00Z"
+      },
+      {
+        "profile_id": "C",
+        "field_name": "handle",
+        "field_value": "@charlie_runs_fast",
+        "source_platform": "instagram",
+        "updated_at": "2026-01-20T16:00:00Z"
+      },
+      {
+        "profile_id": "C",
+        "field_name": "email",
+        "field_value": "charlie.chen96@yahoo.com",
+        "source_platform": "yahoo",
+        "updated_at": "2026-01-01T10:00:00Z"
+      },
+      {
+        "profile_id": "C",
+        "field_name": "birth_year",
+        "field_value": "1996",
+        "source_platform": "forum",
+        "updated_at": "2026-02-10T19:00:00Z"
+      },
+      {
+        "profile_id": "C",
+        "field_name": "hometown",
+        "field_value": "Oakfield",
+        "source_platform": "facebook",
+        "updated_at": "2026-01-02T12:00:00Z"
+      }
+    ],
+    "social_posts": [
+      {
+        "profile_id": "C",
+        "post_id": "SOC_C01",
+        "timestamp": "2026-05-14T10:00:00Z",
+        "platform": "instagram",
+        "text_content": "Officially entering my 30s today! Born May 14, 1996 and loving the journey so far \ud83c\udf89",
+        "location_tag": "San Francisco, CA",
+        "media_type": "photo"
+      },
+      {
+        "profile_id": "C",
+        "post_id": "SOC_C02",
+        "timestamp": "2026-04-05T15:00:00Z",
+        "platform": "instagram",
+        "text_content": "Happy 3rd birthday to my favorite golden retriever, Barnaby! Best hiking partner ever \ud83d\udc36",
+        "location_tag": "Marin Headlands",
+        "media_type": "photo"
+      },
+      {
+        "profile_id": "C",
+        "post_id": "SOC_C03",
+        "timestamp": "2026-03-22T19:00:00Z",
+        "platform": "facebook",
+        "text_content": "Great catching up with old classmates at the Oakfield Elementary 20-year alumni picnic! Can't believe it's been that long.",
+        "location_tag": "Oakfield Park",
+        "media_type": "photo"
+      }
+    ],
+    "strava_activities": [
+      {
+        "profile_id": "C",
+        "activity_id": "STR_C01",
+        "activity_type": "Run",
+        "start_time": "2026-04-12T08:00:00Z",
+        "end_time": "2026-04-12T08:32:00Z",
+        "start_lat": "37.7749",
+        "start_lon": "-122.4194",
+        "distance_km": "5.1",
+        "route_summary": "Marina waterfront loop"
+      },
+      {
+        "profile_id": "C",
+        "activity_id": "STR_C02",
+        "activity_type": "Run",
+        "start_time": "2026-04-19T08:15:00Z",
+        "end_time": "2026-04-19T08:48:00Z",
+        "start_lat": "37.7749",
+        "start_lon": "-122.4194",
+        "distance_km": "5.0",
+        "route_summary": "Marina waterfront loop"
+      }
+    ]
+  }
+}

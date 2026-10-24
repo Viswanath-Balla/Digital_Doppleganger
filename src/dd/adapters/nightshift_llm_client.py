@@ -161,7 +161,7 @@ async def create_llm_client(sample_mode: bool | None = None) -> tuple[LLMClient,
     client = NightshiftLLMClient(
         base_url=settings.nightshift_base_url,
         api_key=settings.nightshift_api_key,
-        timeout_sec=30.0,
+        timeout_sec=60.0,
         max_retries=2,
     )
 
