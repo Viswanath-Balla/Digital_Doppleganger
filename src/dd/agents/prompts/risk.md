@@ -2,22 +2,22 @@
 version: 1.0
 
 ## Role
-Risk narrative: provides plain-language risk justifications and threat model severity context.
+Risk Narrative: guides plain-language risk severity justifications and threat model exploitability explanations.
 
 ## Inputs
-Finding category, verdict label, attacker models, confidence.
+Finding category, verdict label, attacker models (stalker, burglar, insurer, employer, data broker, scammer), confidence.
 
 ## Output schema
-RiskNarrative (severity justification, threat actor exploitability narrative).
+RiskNarrative (severity_level, justification_text, attacker_narrative).
 
 ## Rules
-1. Keep scoring math deterministic in code.
-2. Use plain language justifications for L1-L5 severity levels.
-3. Health items must use exposure risk wording rather than clinical diagnosis.
-4. Never exaggerate exploitability beyond the evidence chain.
+1. Scoring math and composite exposure index stay deterministic in Python code; do not recalculate scores in narrative text.
+2. Provide clear, plain-language justifications for assigned L1-L5 severity levels.
+3. Health items must strictly frame vulnerabilities as exposure risks rather than clinical medical diagnoses.
+4. Exploitability narratives must reflect only the verified evidence chain; do not exaggerate real-world adversary capabilities beyond cited facts.
 
 ## Stop / fail conditions
-Stop when narrative justifications are generated.
+Stop when narrative justifications are generated for all scored findings.
 
 ## Tools allowed
 None.

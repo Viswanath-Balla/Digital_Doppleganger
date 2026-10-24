@@ -93,6 +93,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Weekday daytime meetings and morning athletic runs contradict night shift schedule.",
                     strengthening_condition="Recurring weekday 00:00-08:00 employment records or GPS telemetry.",
                     verified_by=self.name,
+                    score_factual_basis=1,
+                    score_entailment=1,
+                    score_no_benign=0,
+                    total_score=2,
+                    essential_fact_ids=[],
+                    min_independent_sources=1,
+                    fix_request="Narrow claim to evidenced takeout habits or provide recurring overnight telemetry.",
                 )
                 self._record_verdict(inf_id, verdict)
                 verdicts.append(verdict)
@@ -117,6 +124,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Pathology, histopathology, or clinical biopsy reports.",
                     strengthening_condition="Formal ICD-10 diagnostic coding records.",
                     verified_by=self.name,
+                    score_factual_basis=1,
+                    score_entailment=1,
+                    score_no_benign=0,
+                    total_score=2,
+                    essential_fact_ids=[],
+                    min_independent_sources=1,
+                    fix_request="Refocus finding on oncology consultation exposure rather than clinical diagnosis.",
                 )
                 self._record_verdict(inf_id, verdict)
                 verdicts.append(verdict)
@@ -141,6 +155,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Verified birth certificate or public genealogical index.",
                     strengthening_condition="Direct maternal surname documentation.",
                     verified_by=self.name,
+                    score_factual_basis=1,
+                    score_entailment=1,
+                    score_no_benign=0,
+                    total_score=2,
+                    essential_fact_ids=[],
+                    min_independent_sources=1,
+                    fix_request="Corroborate surname with official birth registry or omit finding.",
                 )
                 self._record_verdict(inf_id, verdict)
                 verdicts.append(verdict)
@@ -171,6 +192,9 @@ class VerifierAgent(BaseAgent):
                     )
                     continue
 
+            essential_facts = self._extract_essential_facts(chain)
+            min_sources = self._count_independent_sources(chain)
+
             # Case 3: Supported / Weakly Supported Verification
             if "home address" in claim.lower():
                 verdict = Verdict(
@@ -184,6 +208,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Relocation records or evidence of a shared multi-tenant account.",
                     strengthening_condition="Utility billing records or public voter registry match.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=3,
+                    total_score=9,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "morning" in claim.lower() or "routine" in claim.lower():
                 verdict = Verdict(
@@ -194,6 +224,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Varied work shifts or irregular weekend schedules.",
                     strengthening_condition="Corroborating device alarm or commute telematics.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=3,
+                    total_score=9,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "vacation" in claim.lower() or "vacant" in claim.lower():
                 verdict = Verdict(
@@ -204,6 +240,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="House-sitter presence or remote smart-home lighting automation.",
                     strengthening_condition="Airport geotags and absence of local cellular pings.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=3,
+                    total_score=9,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "late-night" in claim.lower() or "takeout" in claim.lower():
                 verdict = Verdict(
@@ -214,6 +256,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Order placed on behalf of guest or family member.",
                     strengthening_condition="Multiple additional weekend midnight delivery logs.",
                     verified_by=self.name,
+                    score_factual_basis=2,
+                    score_entailment=2,
+                    score_no_benign=2,
+                    total_score=6,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=1,
+                    fix_request="Corroborate with additional independent delivery records.",
                 )
             elif "specialist consultations" in claim.lower() or "oakridge" in claim.lower():
                 verdict = Verdict(
@@ -224,6 +273,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Visits conducted in a professional or accompanying family capacity.",
                     strengthening_condition="Formal physician appointment summary notes.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=3,
+                    total_score=9,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "immunology" in claim.lower() or "underwriting" in claim.lower():
                 verdict = Verdict(
@@ -234,6 +289,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Prescription filled for acute non-chronic indication.",
                     strengthening_condition="Underwriting questionnaire disclosure logs.",
                     verified_by=self.name,
+                    score_factual_basis=2,
+                    score_entailment=2,
+                    score_no_benign=2,
+                    total_score=6,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=1,
+                    fix_request="Corroborate insurer underwriting criteria.",
                 )
             elif "hematological" in claim.lower() or "diagnostic evaluations" in claim.lower():
                 verdict = Verdict(
@@ -244,6 +306,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Routine non-specialist bloodwork results.",
                     strengthening_condition="Laboratory referral documentation.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=2,
+                    total_score=8,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "1996" in claim.lower() or "birth" in claim.lower():
                 verdict = Verdict(
@@ -254,6 +322,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Social post humorously referencing an altered age.",
                     strengthening_condition="Government ID or state license record.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=3,
+                    total_score=9,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "barnaby" in claim.lower() or "pet" in claim.lower():
                 verdict = Verdict(
@@ -264,6 +338,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Dog belongs to a relative or neighbor.",
                     strengthening_condition="Veterinary billing invoice or pet registration tag.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=3,
+                    total_score=9,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=2,
                 )
             elif "oakfield" in claim.lower() or "school" in claim.lower():
                 verdict = Verdict(
@@ -274,6 +354,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Attended picnic as a guest or spouse of an alumnus.",
                     strengthening_condition="Yearbook photo or school enrollment archive.",
                     verified_by=self.name,
+                    score_factual_basis=2,
+                    score_entailment=2,
+                    score_no_benign=2,
+                    total_score=6,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=1,
+                    fix_request="Corroborate school association with primary transcript or yearbook records.",
                 )
             elif "unverified surname" in claim.lower() or "surname speculation" in claim.lower():
                 verdict = Verdict(
@@ -284,6 +371,13 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Disproved ancestry record.",
                     strengthening_condition="Census record or family announcement.",
                     verified_by=self.name,
+                    score_factual_basis=2,
+                    score_entailment=2,
+                    score_no_benign=1,
+                    total_score=5,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=1,
+                    fix_request="Corroborate surname with verified census or family records.",
                 )
             else:
                 verdict = Verdict(
@@ -294,6 +388,12 @@ class VerifierAgent(BaseAgent):
                     falsification_condition="Inconsistent timestamps across records.",
                     strengthening_condition="Additional direct primary source records.",
                     verified_by=self.name,
+                    score_factual_basis=3,
+                    score_entailment=3,
+                    score_no_benign=2,
+                    total_score=8,
+                    essential_fact_ids=essential_facts,
+                    min_independent_sources=min_sources,
                 )
 
             self._record_verdict(inf_id, verdict)
@@ -306,6 +406,23 @@ class VerifierAgent(BaseAgent):
 
         return verdicts, evidence_requests, rejected_ids
 
+    def _extract_essential_facts(self, chain: list[dict[str, Any]]) -> list[str]:
+        """Extract essential fact IDs from the evidence chain that the claim cannot stand without."""
+        fact_ids: list[str] = []
+        for node in chain:
+            if (node.get("_type") in (EntityType.FACT.value, "Fact", "fact") or "source_table" in node) and node.get("_id"):
+                fact_ids.append(node["_id"])
+        return fact_ids
+
+    def _count_independent_sources(self, chain: list[dict[str, Any]]) -> int:
+        """Count distinct data source tables present in the evidence chain."""
+        sources = set()
+        for node in chain:
+            src = node.get("source_table") or node.get("_source")
+            if src and not str(src).startswith("verifier") and not str(src).startswith("red_team"):
+                sources.add(str(src))
+        return max(1, len(sources))
+
     def _record_verdict(self, inference_id: str, verdict: Verdict) -> None:
         """Persist Verdict entity and link to Inference in World Model."""
         vid = self.wm_ingest(
@@ -317,6 +434,13 @@ class VerifierAgent(BaseAgent):
                 "rationale": verdict.rationale,
                 "falsification_condition": verdict.falsification_condition,
                 "strengthening_condition": verdict.strengthening_condition,
+                "score_factual_basis": verdict.score_factual_basis,
+                "score_entailment": verdict.score_entailment,
+                "score_no_benign": verdict.score_no_benign,
+                "total_score": verdict.total_score,
+                "essential_fact_ids": verdict.essential_fact_ids,
+                "min_independent_sources": verdict.min_independent_sources,
+                "fix_request": verdict.fix_request,
                 "verified_by": verdict.verified_by,
             },
             source="verifier_audit",

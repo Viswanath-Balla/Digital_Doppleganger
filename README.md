@@ -4,7 +4,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Zero-Config Sample Mode](https://img.shields.io/badge/Sample%20Mode-100%25%20Offline-success.svg)](data/sample/)
-[![Tests Passing](https://img.shields.io/badge/Tests-83%20Passed-brightgreen.svg)](tests/)
+[![Tests Passing](https://img.shields.io/badge/Tests-106%20Passed-brightgreen.svg)](tests/)
 
 ---
 
@@ -71,12 +71,13 @@ flowchart TD
 ```
 
 ### Agent Roles & Loop Dynamics
-* **Planner**: Determines which platforms and tables to query based on profile metadata.
-* **Extractor**: Pulls raw records via SQL and normalizes them into atomic facts with provenance.
-* **Linker**: Discovers cross-table linkages (matching timestamps, GPS distance clusters, shared identifiers).
-* **Red-Team Agent (`nvidia/nemotron-4-340b-instruct`)**: Thinks like an adversary (stalker, burglar, social engineer) to infer sensitive attributes (home location, absence windows, security questions).
-* **Verifier Agent**: Audits every red-team claim against the world model facts. Rejects speculative hallucinations and requests targeted follow-up evidence queries until claims are substantiated or discarded.
-* **Remediation Engine**: Runs counterfactual simulations—determining which specific single fact, if excised, causes the inference chain to collapse, maximizing privacy defense with minimal user disruption.
+Each agent role is driven by a versioned prompt file in [`src/dd/agents/prompts/`](docs/AGENT_PROMPTS.md) loaded at runtime:
+* **Planner (`planner.md`)**: Determines which platforms and tables to query based on profile metadata.
+* **Extractor (`extractor.md`)**: Pulls raw records via SQL and normalizes them into atomic facts with provenance.
+* **Linker (`linker.md`)**: Discovers cross-table linkages (matching timestamps, GPS distance clusters, shared identifiers).
+* **Red-Team Agent (`redteam.md`)**: Thinks like an adversary (stalker, burglar, social engineer) to infer sensitive attributes from Linker briefs and Verifier critiques (never raw table rows). Model loaded from `.env`.
+* **Verifier Agent (`verifier.md`)**: Audits every red-team claim against World Model facts using a calibrated 3-dimension rubric (Factual Basis, Entailment, Absence of Benign Alternative). Operates in a bounded 2-round loop, issuing structured fix requests for speculative claims.
+* **Remediation Engine (`remediation.md`)**: 100% deterministic, zero-LLM counterfactual simulation engine. Determines minimal fact excisions with a user friction cost model to collapse composite privacy inferences with optimal efficiency (ROI).
 
 ---
 
@@ -217,18 +218,21 @@ digital-doppelganger/
 ├── src/dd/                   # Core Package
 │   ├── adapters/             # Zetaris, DuckDB, Nightshift, Replay, Meterless
 │   ├── agents/               # Planner, Extractor, Linker, Red-Team, Verifier
+│   │   └── prompts/          # Versioned Markdown prompts (planner, extractor, linker, etc.)
 │   ├── analysis/             # Risk scoring, counterfactual linchpin analyzer
 │   ├── eval/                 # Evaluation harness & metrics
 │   ├── graph/                # Multi-agent orchestrator loop
-│   └── models/               # Domain Pydantic models
+│   ├── models/               # Domain Pydantic models (Fact, Entity, Finding, Verdict)
+│   └── remediation/          # Deterministic counterfactual simulation & cost model
 ├── data/
 │   ├── sample/               # Tracked CC0 synthetic CSV tables (6 tables)
 │   └── ground_truth.json     # Ground-truth privacy inferences
 ├── eval/
 │   └── results.md            # Benchmark evaluation results
-├── docs/                     # Video demo script & presentation slide outline
-├── scripts/                  # Synthetic generator, SQL DDL, smoke tests
-├── tests/                    # 83 pytest tests (adapters, loop, secret scan)
+├── docs/                     # Video demo script, presentation slides, prompt architecture
+│   └── AGENT_PROMPTS.md      # Detailed prompt specifications & enforcement guide
+├── scripts/                  # Synthetic generator, SQL DDL, smoke tests, audit script
+├── tests/                    # 106 pytest tests (enforcement, remediation, prompt loader, etc.)
 ├── SPONSOR_TECH.md           # Detailed sponsor integration guide
 ├── PREEXISTING.md            # Hackathon compliance & pre-existing disclosure
 └── Makefile                  # Convenient make targets (run, ui, test, eval)
@@ -238,7 +242,7 @@ digital-doppelganger/
 
 ## 11. Testing & Quality Assurance
 
-Run the complete test suite (83 unit, integration, and security tests):
+Run the complete test suite (106 unit, integration, and security tests):
 ```bash
 python -m pytest tests/ -v
 ```

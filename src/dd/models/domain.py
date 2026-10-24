@@ -124,6 +124,13 @@ class Verdict(BaseModel):
     strengthening_condition: str = ""
     verified_by: str = "verifier"
     model_name: str = "sample-stub"
+    score_factual_basis: int = Field(default=3, ge=0, le=3)
+    score_entailment: int = Field(default=3, ge=0, le=3)
+    score_no_benign: int = Field(default=3, ge=0, le=3)
+    total_score: int = Field(default=9, ge=0, le=9)
+    essential_fact_ids: list[str] = Field(default_factory=list)
+    min_independent_sources: int = Field(default=1, ge=1)
+    fix_request: str | None = None
     created_at: str = Field(default_factory=_utc_now_str)
 
 
@@ -139,6 +146,8 @@ class Finding(BaseModel):
     risk_level: RiskLevel = RiskLevel.INFORMATIONAL
     attacker_models: list[AttackerModel] = Field(default_factory=list)
     evidence_chain: list[dict[str, Any]] = Field(default_factory=list)
+    essential_fact_ids: list[str] = Field(default_factory=list)
+    min_independent_sources: int = Field(default=1, ge=1)
     remediation: str = ""
     linchpin_facts: list[str] = Field(default_factory=list)
     counterfactual_explanation: str = ""

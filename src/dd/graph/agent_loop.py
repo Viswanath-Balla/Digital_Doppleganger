@@ -33,6 +33,7 @@ from src.dd.models.domain import (
     VerdictLabel,
 )
 from src.dd.models.messages import TraceRecord
+from src.dd.remediation import RemediationEngine
 
 
 class AuditLoopOrchestrator:
@@ -176,12 +177,19 @@ class AuditLoopOrchestrator:
         # ---------------------------------------------------------------------
         active_round = 1
         loop_iterations = 0
+        last_critique: str | None = None
 
         while active_round <= self.max_rounds:
-            # Step 3A: Red-team formulation / revision
+            # Step 3A: Red-team formulation / revision (brief-only input)
             t0 = time.perf_counter()
+            linker_brief = getattr(self.linker, "last_brief", None)
             inference_ids = await asyncio.wait_for(
-                self.red_team.propose_inferences(profile_id, round_num=active_round),
+                self.red_team.propose_inferences(
+                    profile_id,
+                    round_num=active_round,
+                    brief=linker_brief,
+                    critique=last_critique,
+                ),
                 timeout=self.step_timeout_sec,
             )
             log_trace(
@@ -253,9 +261,12 @@ class AuditLoopOrchestrator:
                             ev_id, req.inference_id, RelationType.SUPPORTS.value
                         )
 
-            # --- Feedback Loop 2: Rejections trigger next round revision ---
+            # --- Feedback Loop 2: Single-revision rule (pass concrete fix request) ---
             if (rejected_ids or evidence_requests) and active_round < self.max_rounds:
                 loop_iterations += 1
+                # Capture concrete fix request for revision
+                rejected_verdict = next((v for v in verdicts if v.inference_id in rejected_ids), None)
+                last_critique = rejected_verdict.fix_request if rejected_verdict else None
                 active_round += 1
             else:
                 # Loop completed or cap reached
@@ -283,17 +294,30 @@ class AuditLoopOrchestrator:
                     AttackerModel(m) for m in inf.get("attacker_models", [])
                 ],
                 evidence_chain=chain,
+                essential_fact_ids=verdict.essential_fact_ids if verdict else [],
+                min_independent_sources=verdict.min_independent_sources if verdict else 1,
             )
             RiskScorer.score_finding(finding)
             CounterfactualRemovalEngine.evaluate_finding(finding)
             RemediationGenerator.generate_remediation(finding)
             findings.append(finding)
 
+        # Stage 5: Deterministic Remediation Engine simulation
+        remediation_result = RemediationEngine.run_simulation(profile_id, findings)
+
         log_trace(
             agent="reporter",
             message_type="final_report",
             outcome="success",
-            details={"findings_count": len(findings), "total_steps": self._step_counter},
+            details={
+                "findings_count": len(findings),
+                "total_steps": self._step_counter,
+                "exposure_before": remediation_result.exposure_before,
+                "exposure_after": remediation_result.exposure_after,
+                "exposure_reduction": remediation_result.exposure_reduction,
+                "top_linchpin_fact_id": remediation_result.top_linchpin_fact_id,
+                "top_linchpin_collapsed_chains": remediation_result.top_linchpin_collapsed_chains,
+            },
         )
 
         return {
@@ -301,6 +325,7 @@ class AuditLoopOrchestrator:
             "profile_id": profile_id,
             "findings": findings,
             "verdicts": all_verdicts,
+            "remediation_plan": remediation_result,
             "traces": traces,
             "trace_file": str(trace_file),
             "rounds_executed": active_round,

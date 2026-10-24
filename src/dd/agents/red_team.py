@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from src.dd.agents.base_agent import BaseAgent
-from src.dd.models.domain import AttackerModel, EntityType, RelationType
+from src.dd.models.domain import AttackerModel, EntityType, Inference, RelationType
 
 
 class RedTeamAgent(BaseAgent):
@@ -19,12 +19,26 @@ class RedTeamAgent(BaseAgent):
             llm_client=llm_client,
         )
 
-    async def propose_inferences(self, profile_id: str, round_num: int = 1) -> list[str]:
-        """Formulate candidate privacy inferences citing supporting facts and threat models."""
+    async def propose_inferences(
+        self,
+        profile_id: str,
+        round_num: int = 1,
+        brief: dict[str, Any] | None = None,
+        critique: str | None = None,
+    ) -> list[str]:
+        """Formulate candidate privacy inferences citing supporting facts and threat models.
+
+        Receives only the Linker brief (no raw database table rows).
+        """
         proposed_inference_ids: list[str] = []
 
         if round_num == 1:
-            # --- Round 1: Adversarial threat modeling via LLM reasoning ---
+            # Enforce brief-only input: read strictly from brief or world model graph abstractions
+            brief_text = brief.get("brief", "") if brief else "Context brief from Linker."
+            brief_cites = brief.get("cites", []) if brief else []
+            brief_risks = brief.get("risks", []) if brief else []
+            brief_open_qs = brief.get("open_qs", []) if brief else []
+
             places = self.wm_query_entities(EntityType.PLACE.value, {"profile_id": profile_id})
             patterns = self.wm_query_entities(EntityType.TIME_PATTERN.value, {"profile_id": profile_id})
             facts = self.wm_query_entities(EntityType.FACT.value, {"profile_id": profile_id})
@@ -33,16 +47,15 @@ class RedTeamAgent(BaseAgent):
             llm_prompt = [
                 {
                     "role": "system",
-                    "content": (
-                        "You are an adversarial red-team privacy analyst simulating threat actors "
-                        "(stalker, burglar, insurer, employer, data broker, scammer). Analyze the subject's "
-                        "places, temporal routines, and facts to synthesize multi-source privacy leaks."
-                    ),
+                    "content": self.system_prompt,
                 },
                 {
                     "role": "user",
                     "content": (
                         f"Audit Target Profile: {profile_id}\n"
+                        f"Context Brief: {brief_text}\n"
+                        f"Linker Risks: {brief_risks}\n"
+                        f"Open Questions: {brief_open_qs}\n"
                         f"Resolved Places: {[p.get('name', '') + ' (' + str(p.get('address', '')) + ')' for p in places]}\n"
                         f"Temporal Patterns: {[pat.get('pattern', '') + ' ' + str(pat.get('window', '')) for pat in patterns]}\n"
                         f"Observed Fact Sample ({min(len(facts), 10)} of {len(facts)}): "
@@ -276,10 +289,7 @@ class RedTeamAgent(BaseAgent):
                     rev_prompt = [
                         {
                             "role": "system",
-                            "content": (
-                                "You are a red-team privacy analyst revising an inference after Verifier critique. "
-                                "Downgrade speculative claims into substantiated, calibrated hypotheses."
-                            ),
+                            "content": self.system_prompt,
                         },
                         {
                             "role": "user",

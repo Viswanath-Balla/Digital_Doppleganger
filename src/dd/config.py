@@ -44,6 +44,16 @@ class Settings(BaseSettings):
     linker_gps_radius_meters: float = Field(default=100.0, alias="LINKER_GPS_RADIUS_METERS")
     linker_time_window_minutes: float = Field(default=30.0, alias="LINKER_TIME_WINDOW_MINUTES")
 
+    # --- Remediation Cost Model Constants ---
+    cost_delete_post: int = Field(default=1, alias="COST_DELETE_POST")
+    cost_generalize_field: int = Field(default=1, alias="COST_GENERALIZE_FIELD")
+    cost_change_recovery_answer: int = Field(default=2, alias="COST_CHANGE_RECOVERY_ANSWER")
+    cost_remove_data_source: int = Field(default=3, alias="COST_REMOVE_DATA_SOURCE")
+
+    # --- Verifier Threshold Constants ---
+    verifier_threshold_supported: int = Field(default=7, alias="VERIFIER_THRESHOLD_SUPPORTED")
+    verifier_threshold_weakly_supported: int = Field(default=4, alias="VERIFIER_THRESHOLD_WEAKLY_SUPPORTED")
+
     # --- Paths ---
     project_root: Path = _PROJECT_ROOT
     data_dir: Path = _PROJECT_ROOT / "data" / "sample"

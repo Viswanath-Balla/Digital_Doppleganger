@@ -52,9 +52,9 @@ Labels:
 ## 5. How Zetaris Registers Tables
 
 In live mode, Zetaris Virtual Data Warehouse mounts these CSV files via virtual table DDL.
-See [`scripts/register_zetaris_sources.sql`](file:///d:/Visu/JNTU/Projects/Digital_Doppleganger/scripts/register_zetaris_sources.sql) for table definitions and location clauses.
+See [`scripts/register_zetaris_sources.sql`](scripts/register_zetaris_sources.sql) for table definitions and location clauses.
 
-In sample mode (`SAMPLE_MODE=true`), [`DuckDBDataLayer`](file:///d:/Visu/JNTU/Projects/Digital_Doppleganger/src/dd/adapters/duckdb_data_layer.py) mounts these tables directly in an embedded, in-memory DuckDB database with identical table schemas.
+In sample mode (`SAMPLE_MODE=true`), [`DuckDBDataLayer`](src/dd/adapters/duckdb_data_layer.py) mounts these tables directly in an embedded, in-memory DuckDB database with identical table schemas.
 
 ## 6. Regeneration Steps
 
