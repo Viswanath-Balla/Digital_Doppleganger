@@ -7,6 +7,7 @@ from typing import Any
 from pydantic import BaseModel
 
 from src.dd.adapters.base import DataLayer, LLMClient, LLMResponse, WorldModel
+from src.dd.agents.prompt_loader import PromptInfo, get_prompt
 from src.dd.guard.tool_guard import guard_tool_call
 
 
@@ -27,6 +28,12 @@ class BaseAgent:
         self.world_model = world_model
         self.data_layer = data_layer
         self.llm_client = llm_client
+        self.prompt_info: PromptInfo = get_prompt(self.name)
+
+    @property
+    def system_prompt(self) -> str:
+        """System prompt content loaded from markdown prompt file."""
+        return self.prompt_info.content
 
     async def query_data(
         self, sql: str, params: dict[str, Any] | None = None

@@ -48,5 +48,8 @@ class TraceRecord(BaseModel):
     latency_ms: float = 0.0
     retry_count: int = 0
     outcome: Literal["success", "failure", "downgrade", "rejected", "evidence_requested"] = "success"
+    prompt_file: str | None = None
+    prompt_version: str | None = None
+    prompt_sha256: str | None = None
     details: dict[str, Any] = Field(default_factory=dict)
     timestamp: str = Field(default_factory=_utc_now_str)

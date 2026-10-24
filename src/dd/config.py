@@ -40,6 +40,10 @@ class Settings(BaseSettings):
     zetaris_database: str = Field(default="", alias="ZETARIS_DATABASE")
     zetaris_jdbc_url: str = Field(default="", alias="ZETARIS_JDBC_URL")
 
+    # --- Linker Constants ---
+    linker_gps_radius_meters: float = Field(default=100.0, alias="LINKER_GPS_RADIUS_METERS")
+    linker_time_window_minutes: float = Field(default=30.0, alias="LINKER_TIME_WINDOW_MINUTES")
+
     # --- Paths ---
     project_root: Path = _PROJECT_ROOT
     data_dir: Path = _PROJECT_ROOT / "data" / "sample"

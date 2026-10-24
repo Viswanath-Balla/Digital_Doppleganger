@@ -14,6 +14,7 @@ from src.dd.adapters.base import DataLayer, LLMClient, WorldModel
 from src.dd.agents.extractor import ExtractorAgent
 from src.dd.agents.linker import LinkerAgent
 from src.dd.agents.planner import PlannerAgent
+from src.dd.agents.prompt_loader import get_prompt
 from src.dd.agents.red_team import RedTeamAgent
 from src.dd.agents.verifier import VerifierAgent
 from src.dd.analysis import (
@@ -91,6 +92,18 @@ class AuditLoopOrchestrator:
         ) -> None:
             self._step_counter += 1
             prov = provider or (data_provider if agent == "planner" else llm_provider)
+
+            p_file: str | None = None
+            p_ver: str | None = None
+            p_hash: str | None = None
+            try:
+                p_info = get_prompt(agent)
+                p_file = p_info.file_name
+                p_ver = p_info.version
+                p_hash = p_info.sha256
+            except Exception:
+                pass
+
             tr = TraceRecord(
                 run_id=run_id,
                 step=self._step_counter,
@@ -102,6 +115,9 @@ class AuditLoopOrchestrator:
                 latency_ms=round(latency_ms, 2),
                 retry_count=0,
                 outcome=outcome,  # type: ignore
+                prompt_file=p_file,
+                prompt_version=p_ver,
+                prompt_sha256=p_hash,
                 details=details or {},
             )
             traces.append(tr)
@@ -142,13 +158,17 @@ class AuditLoopOrchestrator:
         # ---------------------------------------------------------------------
         t0 = time.perf_counter()
         linked_ids = self.linker.link_entities(profile_id)
+        link_reasons = getattr(self.linker, "last_link_reasons", [])
         log_trace(
             agent="linker",
             message_type="linked_entities",
             outcome="success",
             model="extractor-sample-stub",
             latency_ms=(time.perf_counter() - t0) * 1000,
-            details={"linked_entities_count": len(linked_ids)},
+            details={
+                "linked_entities_count": len(linked_ids),
+                "link_reasons": link_reasons,
+            },
         )
 
         # ---------------------------------------------------------------------
