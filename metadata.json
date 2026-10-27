@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "project_name": "Digital Doppelgänger: Multi-Agent Cyber-Physical PII Defense",
+  "hackathon": "Open Agent Hackathon 2026",
+  "track": "Track 2: Digital Doppelgänger",
+  "description": "Autonomous multi-agent system defending personal identity against cyber-physical re-identification across federated enterprise and consumer data silos.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Viswanath-Balla/Digital_Doppleganger"
+  },
+  "sponsor_technologies": {
+    "zetaris": {
+      "role": "Virtual Data Warehouse (VDW) & Data Virtualization Layer",
+      "architecture": "Federates disparate data silos (fitness tracking, food delivery, calendar schedules, social media, pharmacy records, employee directory) without data duplication.",
+      "interfaces": [
+        {
+          "type": "REST API",
+          "endpoint": "/api/v1.0/sql-editor/sqls/run",
+          "default_port": 8888,
+          "auth": "Bearer API Token (ZETARIS_API_KEY) with X-Org-ID and X-Request-ID headers"
+        },
+        {
+          "type": "JDBC Lightning Driver",
+          "driver_class": "com.zetaris.lightning.jdbc.LightningDriver",
+          "default_port": 10000,
+          "auth": "Username / Password Basic Auth"
+        },
+        {
+          "type": "Web UI / Proxy",
+          "endpoint": "/api/proxy/sql-editor/sqls/run-query",
+          "default_port": 3000
+        }
+      ],
+      "query_features": [
+        "Cross-silo federated SQL joins (e.g., Strava GPS clusters joined with Food Delivery dropoffs)",
+        "Read-only tool guard enforcing AST-level SQL validation",
+        "Deterministic local analytical fallback engine via DuckDB"
+      ]
+    },
+    "nightshift_nemotron": {
+      "role": "LLM Inference & Agent Reasoning",
+      "models": {
+        "red_team": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "verifier": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "extractor": "sample-stub"
+      },
+      "features": [
+        "Specialized reasoning models for adversarial reconstruction",
+        "Verification thresholding (supported >= 7, weakly supported >= 4)",
+        "Strict 30s timeout with exponential backoff retry"
+      ]
+    },
+    "meterless": {
+      "role": "Execution Metering & Token Observability",
+      "features": [
+        "Per-agent token tracking",
+        "Execution step timing and latency budgets"
+      ]
+    }
+  },
+  "agent_architecture": [
+    {
+      "name": "PlannerAgent",
+      "role": "Dynamically selects required data silos and generates targeted evidence queries."
+    },
+    {
+      "name": "ExtractorAgent",
+      "role": "Extracts atomic facts deterministically from raw data silos."
+    },
+    {
+      "name": "LinkerAgent",
+      "role": "Correlates facts across silos into composite entities (Places, Routines, SAME_AS)."
+    },
+    {
+      "name": "PersonaAgent",
+      "role": "Constructs the full digital persona world model."
+    },
+    {
+      "name": "RedTeamAgent",
+      "role": "Adversarially attempts PII reconstruction and impersonation attacks."
+    },
+    {
+      "name": "VerifierAgent",
+      "role": "Scores attack plausibility against grounded evidence."
+    },
+    {
+      "name": "ReporterAgent",
+      "role": "Synthesizes final risk assessment, mitigation cost model, and remediation plan."
+    }
+  ],
+  "data_catalogs": [
+    "strava_activities",
+    "food_orders",
+    "calendar_events",
+    "social_posts",
+    "pharmacy_orders",
+    "profile_fields"
+  ],
+  "safe_execution": {
+    "read_only_sql": true,
+    "pii_consent_enforced": true,
+    "sample_fallback_available": true
+  }
+}
